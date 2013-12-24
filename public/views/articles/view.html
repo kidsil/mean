@@ -1,5 +1,5 @@
 <section data-ng-controller="ArticlesController" data-ng-init="findOne()">
-    <span>{{article.created | date:'medium'}}</span>/
+    <!-- <span>{{article.created | date:'medium'}}</span>/
     <span>{{article.user.name}}</span>
     <h2>{{article.title}}</h2>
     <div data-ng-show="global.user._id == article.user._id">
@@ -8,6 +8,20 @@
         </a> 
         <a class="btn" data-ng-click="remove();">
             <i class="icon-trash"></i>
+        </a> -->
+    <div class="pull-right">
+        <span>{{article.created | date:'medium'}}</span> /
+        <span>{{article.user.name}}</span>
+    </div>
+    <div class="page-header">
+        <h2>{{article.title}}</h2>
+    </div>
+    <div data-ng-show="global.user._id == article.user._id" class="btn-group-vertical pull-right">
+        <a class="btn btn-default" href="/#!/articles/{{article._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-default" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
         </a>
     </div>
     <div>{{article.content}}</div>

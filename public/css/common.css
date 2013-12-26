@@ -4,7 +4,7 @@
 }*/
 
 .content {
-    width:100%
+    width:100%;
 }
 
 footer {
@@ -13,14 +13,16 @@ footer {
     bottom:0px;
     height:30px;
     width:100%;
-    background:#ddd;
+    background:#222222;
     -webkit-box-shadow:0 8px 6px 6px black;
     -moz-box-shadow:0 8px 6px 6px black;
-    box-shadow:0 8px 6px 6px black
+    box-shadow:0 8px 6px 6px black;
+    color: #eee;
+    text-align: center;
 }
 
 footer p {
-    padding:5px 0 12px 10px
+    padding:5px 0px 12px 10px;
 }
 
 .content > section > .container, .content > .container {
@@ -78,4 +80,20 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: -15px;
     margin-bottom: -10px;
     width: 225px;
+}
+
+footer a {
+    color: #999999;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration:none;
+}
+
+@media screen and (max-width:480px) {
+    footer {
+        font-size: 6px;
+        height: 18px;
+    }
 }

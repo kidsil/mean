@@ -1,3 +1,69 @@
 <section data-ng-controller="IndexController">
-	<h1>This is the home view</h1>
+  <div class="jumbotron masthead">
+    <div class="masthead-caption container">
+      <div class="row">
+        <div class="col-md-9 col-md-offset-3">
+          <h1>Dagu Wild Thumper</h1>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit feugiat mauris a pharetra. Sed laoreet eleifend cursus. Nunc non mattis lorem.</p>
+          <a class="btn btn-large btn-primary" href="#">Try now!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row text-center">
+      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="row text-center">
+      <object width="640" height="480"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest"></embed></object>
+    </div>
+  </div>
 </section>
+
+<script src='/socket.io/socket.io.js'></script>
+<script>
+  document.onkeydown = checkKey;
+  function checkKey(e) {
+    e = e || window.event;
+
+    if (e.keyCode == '87') {
+      socket.emit('action', 'forward');
+      console.log('1');
+    }
+    else if (e.keyCode == '83') {
+      socket.emit('action', 'backward');
+    }
+    else if (e.keyCode == '65') {
+      socket.emit('action', 'left');
+    }
+    else if (e.keyCode == '68') {
+      socket.emit('action', 'right');
+    }
+    else if (e.keyCode == '81') {
+      socket.emit('action', 'stop');
+    }
+
+  }
+
+  function goForward() {
+    socket.emit('action', 'forward');
+  }
+
+  function goBackward() {
+    socket.emit('action', 'backward');
+  }
+
+  function goLeft() {
+    socket.emit('action', 'left');
+  }
+
+  function goRight() {
+    socket.emit('action', 'right');
+  }
+
+  function stop() {
+    socket.emit('action', 'stop');
+  }
+
+  var socket = io.connect('//localhost:3000');
+</script>

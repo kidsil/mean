@@ -59,6 +59,19 @@ var port = process.env.PORT || config.port;
 var io = require('socket.io').listen(app.listen(port));
 console.log('Express app started on port ' + port);
 
+// Socket.IO functions
+function relayCommand(a) {
+    console.log('Received command from client: ' + a);
+    io.sockets.emit('serverToPython', a);
+}
+
+// Socket.IO actions on connection
+io.sockets.on('connection', function(socket) {
+    socket.emit('hello', { message: 'Hello!' });
+    socket.on('clientType', console.log);
+    socket.on('clientToServer', relayCommand);
+});
+
 //Initializing logger
 logger.init(app, passport, mongoose);
 

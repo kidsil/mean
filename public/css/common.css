@@ -64,6 +64,14 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
 .navbar-inverse {
     background-color: #222222;
     border-color: #222222;
@@ -96,4 +104,33 @@ a:hover {
         font-size: 6px;
         height: 18px;
     }
+}
+
+.button-separate {
+    padding-top: 10px;
+}
+
+.button-key {
+    width: 120px;
+}
+
+.controls {
+    width: 75%;
+    margin: 0px auto;
+}
+
+.panel-controls {
+    background-color: #fbfbfb;
+}
+
+body {
+    background-image: url('/img/textures/debut_light.png');
+    background-repeat:repeat;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+    background-image: -webkit-linear-gradient(top, #111111 0%, #111111 100%);
+    background-image: linear-gradient(to bottom, #181818 0%, #111111 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff111111', endColorstr='#ff111111', GradientType=0);
 }

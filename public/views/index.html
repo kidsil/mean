@@ -5,17 +5,84 @@
         <div class="col-md-8 col-md-offset-2">
           <h1>Dagu Wild Thumper</h1>
           <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit feugiat mauris a pharetra. Sed laoreet eleifend cursus. Nunc non mattis lorem.</p>
-          <a class="btn btn-large btn-primary" onclick="window.location.hash='robotstream';">Try now!</a>
+          <a class="btn btn-large btn-primary" ng-click="scrollTo('thumperstream')">Try now!</a>
         </div>
       </div>
     </div>
   </div>
   <div class="container">
-    <div class="row text-center">
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <div class="text-center">
+      <p class="lead">Control the robot through the stream via the controls below.</p>
     </div>
-    <div class="row text-center" id="robotstream">
-      <object width="640" height="480"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest"></embed></object>
+    <div class="row controls">
+      <div class="col-md-12">
+        <div class="panel panel-default panel-controls">
+          <div class="panel-body text-center">
+    <!--         <object id ="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest"></embed></object> -->
+            <object id="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=http%3A%2F%2Fosmf.org%2Fconfigurator%2Fvideos%2Fstrobe.flv"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=http%3A%2F%2Fosmf.org%2Fconfigurator%2Fvideos%2Fstrobe.flv"></embed></object>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row controls">
+      <div class="col-md-3">
+        <div class="panel panel-default panel-controls">
+          <div class="panel-body">
+            <div class="row text-center">
+              <button id="button_start" type="button" class="btn btn-success btn-lg button-key" onclick="start()">
+                <span class="glyphicon glyphicon-flash"></span> Start (E)
+              </button>
+            </div>
+            <div class="button-separate"/>
+            <div class="row text-center">
+              <button id="button_stop" type="button" class="btn btn-danger btn-lg button-key" onclick="stop()">
+                <span class="glyphicon glyphicon-ban-circle"></span> Stop (Q)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-default panel-controls">
+          <div class="panel-body">
+            <div class="row text-center">
+              <button id="button_up" type="button" class="btn btn-default btn-lg button-key" onclick="goForward()">
+                <span class="glyphicon glyphicon-arrow-up"></span> Up (W)
+              </button>
+            </div>
+            <div class="button-separate"/>
+            <div class="row text-center">
+              <button id="button_left" type="button" class="btn btn-default btn-lg button-key" onclick="goLeft()">
+                <span class="glyphicon glyphicon-arrow-left"></span> Left (A)
+              </button>
+              <button id="button_down" type="button" class="btn btn-default btn-lg button-key" onclick="goBackward()">
+                <span class="glyphicon glyphicon-arrow-down"></span> Down (S)
+              </button>
+              <button id="button_right" type="button" class="btn btn-default btn-lg button-key" onclick="goRight()">
+                <span class="glyphicon glyphicon-arrow-right"></span> Right (D)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default panel-controls">
+          <div class="panel-body">
+            <div class="row text-center">
+              <button id="button_jump" type="button" class="btn btn-primary btn-lg button-key" onclick="jump()">
+                <span class="glyphicon glyphicon-leaf"></span> Jump (R)
+              </button>
+            </div>
+            <div class="button-separate"/>
+            <div class="row text-center">
+              <button id="button_grab" type="button" class="btn btn-primary btn-lg button-key" onclick="grab()">
+                <span class="glyphicon glyphicon-wrench"></span> Grab (F)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <br /><br /><br />
   </div>
@@ -28,43 +95,99 @@
     e = e || window.event;
 
     if (e.keyCode == '87') {
-      socket.emit('action', 'forward');
-      console.log('1');
+      $("#button_up").click();
+      $("#button_up").addClass("active");
+      setTimeout(function() { $("#button_up").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '83') {
-      socket.emit('action', 'backward');
+      $("#button_down").click();
+      $("#button_down").addClass("active");
+      setTimeout(function() { $("#button_down").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '65') {
-      socket.emit('action', 'left');
+      $("#button_left").click();
+      $("#button_left").addClass("active");
+      setTimeout(function() { $("#button_left").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '68') {
-      socket.emit('action', 'right');
+      $("#button_right").click();
+      $("#button_right").addClass("active");
+      setTimeout(function() { $("#button_right").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '81') {
-      socket.emit('action', 'stop');
+      $("#button_stop").click(); 
+      $("#button_stop").addClass("active");
+      setTimeout(function() { $("#button_stop").removeClass("active"); }, 100);
+    }
+    else if (e.keyCode == '69') {
+      $("#button_start").click(); 
+      $("#button_start").addClass("active");
+      setTimeout(function() { $("#button_start").removeClass("active"); }, 100);
+    }
+    else if (e.keyCode == '82') {
+      $("#button_jump").click(); 
+      $("#button_jump").addClass("active");
+      setTimeout(function() { $("#button_jump").removeClass("active"); }, 100);
+    }
+    else if (e.keyCode == '70') {
+      $("#button_grab").click(); 
+      $("#button_grab").addClass("active");
+      setTimeout(function() { $("#button_grab").removeClass("active"); }, 100);
     }
 
   }
 
   function goForward() {
     socket.emit('action', 'forward');
+    console.log('forward');
   }
 
   function goBackward() {
     socket.emit('action', 'backward');
+    console.log('backward');
   }
 
   function goLeft() {
     socket.emit('action', 'left');
+    console.log('left');
   }
 
   function goRight() {
     socket.emit('action', 'right');
+    console.log('right');
   }
 
   function stop() {
     socket.emit('action', 'stop');
+    console.log('stop');
+  }
+
+  function start() {
+    socket.emit('action', 'start');
+    console.log('start');
+  }
+
+  function jump() {
+    socket.emit('action', 'jump');
+    console.log('jump');
+  }
+
+  function grab() {
+    socket.emit('action', 'grab');
+    console.log('grab');
   }
 
   var socket = io.connect('//localhost:3000');
+
+  socket.on('hello', function(data) {
+    socket.emit('clientType', 'PC Connected');
+  });
+
+  function getPanelWidth() { return ($("#thumperstream").width()); };
+  $("#thumperstream").css({ height: (getPanelWidth() * 0.680851) });
+
+  $(window).resize(function () {
+    $("#thumperstream").css({ height: (getPanelWidth() * 0.680851) });
+  });
+
 </script>

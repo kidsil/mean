@@ -114,7 +114,7 @@ a:hover {
     width: 120px;
 }
 
-.controls {
+.sub-container {
     width: 75%;
     margin: 0px auto;
 }
@@ -126,11 +126,4 @@ a:hover {
 body {
     background-image: url('/img/textures/debut_light.png');
     background-repeat:repeat;
-}
-
-.navbar-inverse .navbar-nav > .active > a {
-    background-image: -webkit-linear-gradient(top, #111111 0%, #111111 100%);
-    background-image: linear-gradient(to bottom, #181818 0%, #111111 100%);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff111111', endColorstr='#ff111111', GradientType=0);
 }

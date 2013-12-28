@@ -11,10 +11,14 @@
     </div>
   </div>
   <div class="container">
-    <div class="text-center">
-      <p class="lead">Control the robot through the stream via the controls below.</p>
+    <div class="row sub-container">
+      <div class="col-md-12">
+        <div class="alert alert-info text-center">
+          <p class="lead">Control the robot through the stream via the controls below.</p>
+        </div>
+      </div>
     </div>
-    <div class="row controls">
+    <div class="row sub-container">
       <div class="col-md-12">
         <div class="panel panel-default panel-controls">
           <div class="panel-body text-center">
@@ -25,7 +29,7 @@
       </div>
     </div>
     <br />
-    <div class="row controls">
+    <div class="row sub-container">
       <div class="col-md-3">
         <div class="panel panel-default panel-controls">
           <div class="panel-body">
@@ -47,19 +51,19 @@
         <div class="panel panel-default panel-controls">
           <div class="panel-body">
             <div class="row text-center">
-              <button id="button_up" type="button" class="btn btn-default btn-lg button-key" onclick="goForward()">
+              <button id="button_up" type="button" class="btn btn-info btn-lg button-key" onclick="goForward()">
                 <span class="glyphicon glyphicon-arrow-up"></span> Up (W)
               </button>
             </div>
             <div class="button-separate"/>
             <div class="row text-center">
-              <button id="button_left" type="button" class="btn btn-default btn-lg button-key" onclick="goLeft()">
+              <button id="button_left" type="button" class="btn btn-info btn-lg button-key" onclick="goLeft()">
                 <span class="glyphicon glyphicon-arrow-left"></span> Left (A)
               </button>
-              <button id="button_down" type="button" class="btn btn-default btn-lg button-key" onclick="goBackward()">
+              <button id="button_down" type="button" class="btn btn-info btn-lg button-key" onclick="goBackward()">
                 <span class="glyphicon glyphicon-arrow-down"></span> Down (S)
               </button>
-              <button id="button_right" type="button" class="btn btn-default btn-lg button-key" onclick="goRight()">
+              <button id="button_right" type="button" class="btn btn-info btn-lg button-key" onclick="goRight()">
                 <span class="glyphicon glyphicon-arrow-right"></span> Right (D)
               </button>
             </div>

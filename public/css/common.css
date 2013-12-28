@@ -120,10 +120,10 @@ a:hover {
 }
 
 .panel-controls {
-    background-color: #fbfbfb;
+    background-color: #fafafa;
 }
 
 body {
-    background-image: url('/img/textures/debut_light.png');
+    background-image: url('/img/textures/paper_fibers.png');
     background-repeat:repeat;
 }

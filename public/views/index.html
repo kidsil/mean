@@ -5,7 +5,7 @@
         <div class="col-md-8 col-md-offset-2">
           <h1>Dagu Wild Thumper</h1>
           <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit feugiat mauris a pharetra. Sed laoreet eleifend cursus. Nunc non mattis lorem.</p>
-          <a class="btn btn-large btn-primary" ng-click="scrollTo('thumperstream')">Try now!</a>
+          <a class="btn btn-lg btn-primary" ng-click="scrollTo('thumperstream')">Try now!</a>
         </div>
       </div>
     </div>
@@ -22,8 +22,8 @@
       <div class="col-md-12">
         <div class="panel panel-default panel-controls">
           <div class="panel-body text-center">
-    <!--         <object id ="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest"></embed></object> -->
-            <object id="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=http%3A%2F%2Fosmf.org%2Fconfigurator%2Fvideos%2Fstrobe.flv"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=http%3A%2F%2Fosmf.org%2Fconfigurator%2Fvideos%2Fstrobe.flv"></embed></object>
+            <object id ="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=rtmp%3A%2F%2F192.168.1.76%2Flive%2Ftest"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest"></embed></object>
+           <!--  <object id="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=http%3A%2F%2Fosmf.org%2Fconfigurator%2Fvideos%2Fstrobe.flv"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=http%3A%2F%2Fosmf.org%2Fconfigurator%2Fvideos%2Fstrobe.flv"></embed></object> -->
           </div>
         </div>
       </div>
@@ -35,13 +35,13 @@
           <div class="panel-body">
             <div class="row text-center">
               <button id="button_start" type="button" class="btn btn-success btn-lg button-key" onclick="start()">
-                <span class="glyphicon glyphicon-flash"></span> Start (E)
+                <span class="glyphicon glyphicon-flash"></span> Start (Z)
               </button>
             </div>
             <div class="button-separate"/>
             <div class="row text-center">
               <button id="button_stop" type="button" class="btn btn-danger btn-lg button-key" onclick="stop()">
-                <span class="glyphicon glyphicon-ban-circle"></span> Stop (Q)
+                <span class="glyphicon glyphicon-ban-circle"></span> Stop (X)
               </button>
             </div>
           </div>
@@ -51,8 +51,14 @@
         <div class="panel panel-default panel-controls">
           <div class="panel-body">
             <div class="row text-center">
+              <button id="button_shiftl" type="button" class="btn btn-info btn-lg button-key" onclick="shiftLeft()">
+                <span class="glyphicon glyphicon-chevron-left"></span> Shift (Q)
+              </button>
               <button id="button_up" type="button" class="btn btn-info btn-lg button-key" onclick="goForward()">
                 <span class="glyphicon glyphicon-arrow-up"></span> Up (W)
+              </button>              
+              <button id="button_shiftr" type="button" class="btn btn-info btn-lg button-key" onclick="shiftRight()">
+                <span class="glyphicon glyphicon-chevron-right"></span> Shift (E)
               </button>
             </div>
             <div class="button-separate"/>
@@ -118,12 +124,12 @@
       $("#button_right").addClass("active");
       setTimeout(function() { $("#button_right").removeClass("active"); }, 100);
     }
-    else if (e.keyCode == '81') {
+    else if (e.keyCode == '88') {
       $("#button_stop").click(); 
       $("#button_stop").addClass("active");
       setTimeout(function() { $("#button_stop").removeClass("active"); }, 100);
     }
-    else if (e.keyCode == '69') {
+    else if (e.keyCode == '90') {
       $("#button_start").click(); 
       $("#button_start").addClass("active");
       setTimeout(function() { $("#button_start").removeClass("active"); }, 100);
@@ -138,46 +144,66 @@
       $("#button_grab").addClass("active");
       setTimeout(function() { $("#button_grab").removeClass("active"); }, 100);
     }
+    else if (e.keyCode == '69') {
+      $("#button_shiftr").click(); 
+      $("#button_shiftr").addClass("active");
+      setTimeout(function() { $("#button_shiftr").removeClass("active"); }, 100);
+    }
+    else if (e.keyCode == '81') {
+      $("#button_shiftl").click(); 
+      $("#button_shiftl").addClass("active");
+      setTimeout(function() { $("#button_shiftl").removeClass("active"); }, 100);
+    }
 
   }
 
   function goForward() {
-    socket.emit('action', 'forward');
+    socket.emit('clientToServer', 'forward');
     console.log('forward');
   }
 
   function goBackward() {
-    socket.emit('action', 'backward');
+    socket.emit('clientToServer', 'backward');
     console.log('backward');
   }
 
   function goLeft() {
-    socket.emit('action', 'left');
+    socket.emit('clientToServer', 'left');
     console.log('left');
   }
 
   function goRight() {
-    socket.emit('action', 'right');
+    socket.emit('clientToServer', 'right');
     console.log('right');
   }
 
+  function shiftLeft() {
+    socket.emit('clientToServer', 'shiftl');
+    console.log('shiftl');
+  }
+
+  function shiftRight() {
+    socket.emit('clientToServer', 'shiftr');
+    console.log('shiftr');
+  }
+
   function stop() {
-    socket.emit('action', 'stop');
+    socket.emit('clientToServer', 'stop');
     console.log('stop');
   }
 
   function start() {
-    socket.emit('action', 'start');
+    socket.emit('clientToServer', 'start');
     console.log('start');
   }
 
   function jump() {
-    socket.emit('action', 'jump');
+    socket.emit('clientToServer', 'jump');
     console.log('jump');
   }
 
   function grab() {
-    socket.emit('action', 'grab');
+    socket.emit('clientToServer', 'grab');
     console.log('grab');
   }
 

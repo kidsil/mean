@@ -5,8 +5,8 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
 }]);
 
 angular.module('mean.system').controller('IndexController', function($scope, $location, $anchorScroll) {
-   $scope.scrollTo = function(id) {
-      $location.hash(id);
-      $anchorScroll();
-   }
+    $scope.scrollTo = function(id) {
+        $location.hash(id);
+        $anchorScroll();
+    };
 });

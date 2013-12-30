@@ -37,6 +37,7 @@
         "grunt": "latest",
         "grunt-cli": "latest",
         "grunt-env": "latest",
+        "forever": "latest",
         "socket.io": "latest"
     },
     "devDependencies": {

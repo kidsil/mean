@@ -22,7 +22,7 @@
       <div class="col-md-12">
         <div class="panel panel-default panel-controls">
           <div class="panel-body text-center">
-            <object id ="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=rtmp%3A%2F%2F192.168.1.76%2Flive%2Ftest"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest"></embed></object>
+            <object id ="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=rtmp%3A%2F%2F192.168.1.76%2Flive%2Ftest&streamType=live&optimizeBuffering=false&bufferTime=0&initialBufferTime=0&expandedBufferTime=0&liveBufferTime=0&minContinuousPlaybackTime=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest&streamType=live&optimizeBuffering=false&bufferTime=0&initialBufferTime=0&expandedBufferTime=0&liveBufferTime=0&minContinuousPlaybackTime=0"></embed></object>
            <!--  <object id="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=http%3A%2F%2Fosmf.org%2Fconfigurator%2Fvideos%2Fstrobe.flv"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=http%3A%2F%2Fosmf.org%2Fconfigurator%2Fvideos%2Fstrobe.flv"></embed></object> -->
           </div>
         </div>
@@ -34,13 +34,13 @@
         <div class="panel panel-default panel-controls">
           <div class="panel-body">
             <div class="row text-center">
-              <button id="button_start" type="button" class="btn btn-success btn-lg button-key" onclick="start()">
+              <button id="button_start" type="button" class="btn btn-success btn-lg button-key">
                 <span class="glyphicon glyphicon-flash"></span> Start (Z)
               </button>
             </div>
             <div class="button-separate"/>
             <div class="row text-center">
-              <button id="button_stop" type="button" class="btn btn-danger btn-lg button-key" onclick="stop()">
+              <button id="button_stop" type="button" class="btn btn-danger btn-lg button-key">
                 <span class="glyphicon glyphicon-ban-circle"></span> Stop (X)
               </button>
             </div>
@@ -51,25 +51,25 @@
         <div class="panel panel-default panel-controls">
           <div class="panel-body">
             <div class="row text-center">
-              <button id="button_shiftl" type="button" class="btn btn-info btn-lg button-key" onclick="shiftLeft()">
+              <button id="button_shiftl" type="button" class="btn btn-info btn-lg button-key">
                 <span class="glyphicon glyphicon-chevron-left"></span> Shift (Q)
               </button>
-              <button id="button_up" type="button" class="btn btn-info btn-lg button-key" onclick="goForward()">
+              <button id="button_up" type="button" class="btn btn-info btn-lg button-key">
                 <span class="glyphicon glyphicon-arrow-up"></span> Up (W)
               </button>              
-              <button id="button_shiftr" type="button" class="btn btn-info btn-lg button-key" onclick="shiftRight()">
+              <button id="button_shiftr" type="button" class="btn btn-info btn-lg button-key">
                 <span class="glyphicon glyphicon-chevron-right"></span> Shift (E)
               </button>
             </div>
             <div class="button-separate"/>
             <div class="row text-center">
-              <button id="button_left" type="button" class="btn btn-info btn-lg button-key" onclick="goLeft()">
+              <button id="button_left" type="button" class="btn btn-info btn-lg button-key">
                 <span class="glyphicon glyphicon-arrow-left"></span> Left (A)
               </button>
-              <button id="button_down" type="button" class="btn btn-info btn-lg button-key" onclick="goBackward()">
+              <button id="button_down" type="button" class="btn btn-info btn-lg button-key">
                 <span class="glyphicon glyphicon-arrow-down"></span> Down (S)
               </button>
-              <button id="button_right" type="button" class="btn btn-info btn-lg button-key" onclick="goRight()">
+              <button id="button_right" type="button" class="btn btn-info btn-lg button-key">
                 <span class="glyphicon glyphicon-arrow-right"></span> Right (D)
               </button>
             </div>
@@ -80,13 +80,13 @@
         <div class="panel panel-default panel-controls">
           <div class="panel-body">
             <div class="row text-center">
-              <button id="button_jump" type="button" class="btn btn-primary btn-lg button-key" onclick="jump()">
+              <button id="button_jump" type="button" class="btn btn-primary btn-lg button-key">
                 <span class="glyphicon glyphicon-leaf"></span> Jump (R)
               </button>
             </div>
             <div class="button-separate"/>
             <div class="row text-center">
-              <button id="button_grab" type="button" class="btn btn-primary btn-lg button-key" onclick="grab()">
+              <button id="button_grab" type="button" class="btn btn-primary btn-lg button-key">
                 <span class="glyphicon glyphicon-wrench"></span> Grab (F)
               </button>
             </div>
@@ -100,111 +100,269 @@
 
 <script src='/socket.io/socket.io.js'></script>
 <script>
-  document.onkeydown = checkKey;
-  function checkKey(e) {
+  var allowedForward = true;
+  var allowedBackward = true;
+  var allowedLeft = true;
+  var allowedRight = true;
+  var allowedShiftR = true;
+  var allowedShiftL = true;
+  var allowedStart = true;
+  var allowedStop = true;
+  var allowedJump = true;
+  var allowedGrab = true;
+
+  document.onkeydown = checkKeyDown;
+  function checkKeyDown(e) {
     e = e || window.event;
 
     if (e.keyCode == '87') {
-      $("#button_up").click();
+      if (!allowedForward) return;
+      allowedForward = false;
+      forwardDown();
       $("#button_up").addClass("active");
-      setTimeout(function() { $("#button_up").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '83') {
-      $("#button_down").click();
+      if (!allowedBackward) return;
+      allowedBackward = false;
+      backwardDown();
       $("#button_down").addClass("active");
-      setTimeout(function() { $("#button_down").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '65') {
-      $("#button_left").click();
+      if (!allowedLeft) return;
+      allowedLeft = false;
+      leftDown();
       $("#button_left").addClass("active");
-      setTimeout(function() { $("#button_left").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '68') {
-      $("#button_right").click();
+      if (!allowedRight) return;
+      allowedRight = false;
+      rightDown();
       $("#button_right").addClass("active");
-      setTimeout(function() { $("#button_right").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '88') {
-      $("#button_stop").click(); 
+      if (!allowedStop) return;
+      allowedStop = false;
+      stopDown();
       $("#button_stop").addClass("active");
-      setTimeout(function() { $("#button_stop").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '90') {
-      $("#button_start").click(); 
+      if (!allowedStart) return;
+      allowedStart = false;
+      startDown();
       $("#button_start").addClass("active");
-      setTimeout(function() { $("#button_start").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '82') {
-      $("#button_jump").click(); 
+      if (!allowedJump) return;
+      allowedJump = false;
+      jumpDown();
       $("#button_jump").addClass("active");
-      setTimeout(function() { $("#button_jump").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '70') {
-      $("#button_grab").click(); 
+      if (!allowedGrab) return;
+      allowedGrab = false;
+      grabDown();
       $("#button_grab").addClass("active");
-      setTimeout(function() { $("#button_grab").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '69') {
-      $("#button_shiftr").click(); 
+      if (!allowedShiftR) return;
+      allowedShiftR = false;
+      shiftRightDown();
       $("#button_shiftr").addClass("active");
-      setTimeout(function() { $("#button_shiftr").removeClass("active"); }, 100);
     }
     else if (e.keyCode == '81') {
-      $("#button_shiftl").click(); 
+      if (!allowedShiftL) return;
+      allowedShiftL = false;
+      shiftLeftDown();
       $("#button_shiftl").addClass("active");
-      setTimeout(function() { $("#button_shiftl").removeClass("active"); }, 100);
     }
 
   }
 
-  function goForward() {
+  document.onkeyup = checkKeyUp;
+  function checkKeyUp(e) {
+     e = e || window.event;
+
+    if (e.keyCode == '87') {
+      allowedForward = true;
+      forwardUp();
+      $("#button_up").removeClass("active");
+    }
+    else if (e.keyCode == '83') {
+      allowedBackward = true;
+      backwardUp();
+      $("#button_down").removeClass("active");
+    }
+    else if (e.keyCode == '65') {
+      allowedLeft = true;
+      leftUp();
+      $("#button_left").removeClass("active");
+    }
+    else if (e.keyCode == '68') {
+      allowedRight = true;
+      rightUp();
+      $("#button_right").removeClass("active");
+    }
+    else if (e.keyCode == '88') {
+      allowedStop = true;
+      stopUp();
+      $("#button_stop").removeClass("active");
+    }
+    else if (e.keyCode == '90') {
+      allowedStart = true;
+      startUp();
+      $("#button_start").removeClass("active");
+    }
+    else if (e.keyCode == '82') {
+      allowedJump = true;
+      jumpUp();
+      $("#button_jump").removeClass("active");
+    }
+    else if (e.keyCode == '70') {
+      allowedGrab = true;
+      grabUp();
+      $("#button_grab").removeClass("active");
+    }
+    else if (e.keyCode == '69') {
+      allowedShiftR = true;
+      shiftRightUp();
+      $("#button_shiftr").removeClass("active");
+    }
+    else if (e.keyCode == '81') {
+      allowedShiftL = true;
+      shiftLeftUp();
+      $("#button_shiftl").removeClass("active");
+    }
+
+  }
+
+  $("#button_up").mousedown(forwardDown);
+  $("#button_up").click(forwardUp);
+
+  $("#button_down").mousedown(backwardDown);
+  $("#button_down").click(backwardUp);
+
+  $("#button_left").mousedown(leftDown);
+  $("#button_left").click(leftUp);
+
+  $("#button_right").mousedown(rightDown);
+  $("#button_right").click(rightUp);
+
+  $("#button_start").mousedown(startDown);
+  $("#button_start").click(startUp);
+
+  $("#button_stop").mousedown(stopDown);
+  $("#button_stop").click(stopUp);
+
+  $("#button_jump").mousedown(jumpDown);
+  $("#button_jump").click(jumpUp);
+
+  $("#button_grab").mousedown(grabDown);
+  $("#button_grab").click(grabUp);
+
+  $("#button_shiftr").mousedown(shiftRightDown);
+  $("#button_shiftr").click(shiftRightUp);
+
+  $("#button_shiftl").mousedown(shiftLeftDown);
+  $("#button_shiftl").click(shiftLeftUp);
+
+  function forwardDown() {
     socket.emit('clientToServer', 'forward');
     console.log('forward');
   }
 
-  function goBackward() {
+  function forwardUp(){
+    socket.emit('clientToServer', '-forward');
+    console.log('-forward');
+  }
+
+  function backwardDown() {
     socket.emit('clientToServer', 'backward');
     console.log('backward');
   }
 
-  function goLeft() {
+  function backwardUp() {
+    socket.emit('clientToServer', '-backward');
+    console.log('-backward');
+  }
+
+  function leftDown() {
     socket.emit('clientToServer', 'left');
     console.log('left');
   }
 
-  function goRight() {
+  function leftUp() {
+    socket.emit('clientToServer', '-left');
+    console.log('-left');
+  }
+
+  function rightDown() {
     socket.emit('clientToServer', 'right');
     console.log('right');
   }
 
-  function shiftLeft() {
+  function rightUp() {
+    socket.emit('clientToServer', '-right');
+    console.log('-right');
+  }
+
+  function shiftLeftDown() {
     socket.emit('clientToServer', 'shiftl');
     console.log('shiftl');
   }
 
-  function shiftRight() {
+  function shiftLeftUp() {
+    socket.emit('clientToServer', '-shiftl');
+    console.log('-shiftl');
+  }
+
+  function shiftRightDown() {
     socket.emit('clientToServer', 'shiftr');
     console.log('shiftr');
   }
 
-  function stop() {
+  function shiftRightUp() {
+    socket.emit('clientToServer', '-shiftr');
+    console.log('-shiftr');
+  }
+
+  function stopDown() {
     socket.emit('clientToServer', 'stop');
     console.log('stop');
   }
 
-  function start() {
+  function stopUp() {
+    socket.emit('clientToServer', '-stop');
+    console.log('-stop');
+  }
+
+  function startDown() {
     socket.emit('clientToServer', 'start');
     console.log('start');
   }
 
-  function jump() {
+  function startUp() {
+    socket.emit('clientToServer', '-start');
+    console.log('-start');
+  }
+
+  function jumpDown() {
     socket.emit('clientToServer', 'jump');
     console.log('jump');
   }
 
-  function grab() {
+  function jumpUp() {
+    socket.emit('clientToServer', '-jump');
+    console.log('-jump');
+  }
+
+  function grabDown() {
     socket.emit('clientToServer', 'grab');
     console.log('grab');
+  }
+
+  function grabUp() {
+    socket.emit('clientToServer', '-grab');
+    console.log('-grab');
   }
 
   var socket = io.connect('//localhost:3000');

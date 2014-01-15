@@ -34,8 +34,8 @@
         <div class="panel panel-default panel-controls">
           <div class="panel-body">
             <div class="row text-center">
-              <button id="button_start" type="button" class="btn btn-success btn-lg button-key">
-                <span class="glyphicon glyphicon-flash"></span> Start (Z)
+              <button id="button_toggle" type="button" class="btn btn-success btn-lg button-key">
+                <span class="glyphicon glyphicon-text-width"></span> Toggle (Z)
               </button>
             </div>
             <div class="button-separate"/>
@@ -106,7 +106,7 @@
   var allowedRight = true;
   var allowedShiftR = true;
   var allowedShiftL = true;
-  var allowedStart = true;
+  var allowedToggle = true;
   var allowedStop = true;
   var allowedJump = true;
   var allowedGrab = true;
@@ -146,10 +146,10 @@
       $("#button_stop").addClass("active");
     }
     else if (e.keyCode == '90') {
-      if (!allowedStart) return;
-      allowedStart = false;
-      startDown();
-      $("#button_start").addClass("active");
+      if (!allowedToggle) return;
+      allowedToggle = false;
+      toggleDown();
+      $("#button_toggle").addClass("active");
     }
     else if (e.keyCode == '82') {
       if (!allowedJump) return;
@@ -208,9 +208,9 @@
       $("#button_stop").removeClass("active");
     }
     else if (e.keyCode == '90') {
-      allowedStart = true;
-      startUp();
-      $("#button_start").removeClass("active");
+      allowedToggle = true;
+      toggleUp();
+      $("#button_toggle").removeClass("active");
     }
     else if (e.keyCode == '82') {
       allowedJump = true;
@@ -247,8 +247,8 @@
   $("#button_right").mousedown(rightDown);
   $("#button_right").click(rightUp);
 
-  $("#button_start").mousedown(startDown);
-  $("#button_start").click(startUp);
+  $("#button_toggle").mousedown(toggleDown);
+  $("#button_toggle").click(toggleUp);
 
   $("#button_stop").mousedown(stopDown);
   $("#button_stop").click(stopUp);
@@ -335,14 +335,14 @@
     console.log('-stop');
   }
 
-  function startDown() {
-    socket.emit('clientToServer', 'start');
-    console.log('start');
+  function toggleDown() {
+    socket.emit('clientToServer', 'toggle');
+    console.log('toggle');
   }
 
-  function startUp() {
-    socket.emit('clientToServer', '-start');
-    console.log('-start');
+  function toggleUp() {
+    // socket.emit('clientToServer', '-toggle');
+    // console.log('-toggle');
   }
 
   function jumpDown() {

@@ -10,6 +10,7 @@
         "bootstrap": "3.0.3",
         "angular-bootstrap": "0.7.0",
         "angular-ui-utils": "0.0.4",
-        "jquery": "1.10.2"
+        "jquery": "1.10.2",
+        "components-font-awesome": "latest"
     }
 }

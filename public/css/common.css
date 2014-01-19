@@ -15,7 +15,7 @@ footer a {
 }
 
 footer a:hover {
-    color: #00B2EE;
+    color: #5CACEE;
     text-decoration:none;
 }
 
@@ -40,10 +40,10 @@ footer {
 
 .section-1 {
     margin-top:50px;
-    background-color: #00B2EE;
+    background-color: #5CACEE;
     color: #ffffff;
-    padding-top: 200px;
-    padding-bottom: 200px;
+    padding-top: 175px;
+    padding-bottom: 75px;
     font-size: 21px;
     font-weight: 200;
     line-height: 2.1428571435;
@@ -58,16 +58,16 @@ footer {
 }
 
 .section-2 {
-    background-color: #B2DFEE;
+    background-color: #74BBFB;
     color: #ffffff;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     font-size: 21px;
     font-weight: 200;
     line-height: 2.1428571435;
 }
 
-p, a, label, input, button, span, h1, h2, h3, h4, h5, h6 {
+p, a, label, input, button, span, h1, h2, h3, h4, h5, h6, body {
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -99,7 +99,7 @@ p, a, label, input, button, span, h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-inverse .navbar-nav > li > a:hover {
-    color: #00B2EE;
+    color: #5CACEE;
 }
 
 .navbar-inverse .navbar-nav a {

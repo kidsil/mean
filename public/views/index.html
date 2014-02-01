@@ -70,9 +70,9 @@
     </div>
     <div class="row sub-container">
       <div class="col-md-12 text-center">
-        <div class="panel panel-default panel-controls">
+        <div id="streambox" class="panel panel-default panel-controls">
           <div class="panel-body">
-            <object id ="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=rtmp%3A%2F%2F192.168.1.76%2Flive%2Ftest&streamType=live&optimizeBuffering=false&bufferTime=0&initialBufferTime=0&expandedBufferTime=0&liveBufferTime=0&minContinuousPlaybackTime=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest&streamType=live&optimizeBuffering=false&bufferTime=0&initialBufferTime=0&expandedBufferTime=0&liveBufferTime=0&minContinuousPlaybackTime=0"></embed></object>
+            <object id="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=rtmp%3A%2F%2F192.168.1.76%2Flive%2Ftest&streamType=live&optimizeBuffering=false&bufferTime=0&initialBufferTime=0&expandedBufferTime=0&liveBufferTime=0&minContinuousPlaybackTime=0"></param><param name="allowFullScreen" value="false"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=rtmp%3A%2F%2F192.168.2.189%2Flive%2Ftest&streamType=live&optimizeBuffering=false&bufferTime=0&initialBufferTime=0&expandedBufferTime=0&liveBufferTime=0&minContinuousPlaybackTime=0"></embed></object>
            <!--  <object id="thumperstream" width="100%" height="100%"> <param name="movie" value="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf"></param><param name="flashvars" value="src=http%3A%2F%2Fosmf.org%2Fconfigurator%2Fvideos%2Fstrobe.flv"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="direct"></param><embed src="http://osmf.org/dev/2.0gm/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="direct" width="470" height="320" flashvars="src=http%3A%2F%2Fosmf.org%2Fconfigurator%2Fvideos%2Fstrobe.flv"></embed></object> -->
           </div>
         </div>
@@ -84,8 +84,8 @@
         <div class="panel panel-default panel-controls">
           <div class="panel-body">
             <div class="row text-center">
-              <button id="button_toggle" type="button" class="btn btn-success btn-lg button-key">
-                <span class="glyphicon glyphicon-text-width"></span> Toggle (Z)
+              <button id="button_camera" type="button" class="btn btn-success btn-lg button-key">
+                <span class="glyphicon glyphicon-text-width"></span> Camera (Z)
               </button>
             </div>
             <div class="button-separate"/>
@@ -155,10 +155,12 @@
   var allowedRight = true;
   var allowedShiftR = true;
   var allowedShiftL = true;
-  var allowedToggle = true;
+  var allowedCamera = true;
   var allowedStop = true;
   var allowedJump = true;
   var allowedGrab = true;
+
+  var allowPan = false;
 
   document.onkeydown = checkKeyDown;
   function checkKeyDown(e) {
@@ -195,10 +197,10 @@
       $("#button_stop").addClass("active");
     }
     else if (e.keyCode == '90') {
-      if (!allowedToggle) return;
-      allowedToggle = false;
-      toggleDown();
-      $("#button_toggle").addClass("active");
+      if (!allowedCamera) return;
+      allowedCamera = false;
+      cameraDown();
+      $("#button_camera").addClass("active");
     }
     else if (e.keyCode == '82') {
       if (!allowedJump) return;
@@ -257,9 +259,9 @@
       $("#button_stop").removeClass("active");
     }
     else if (e.keyCode == '90') {
-      allowedToggle = true;
-      toggleUp();
-      $("#button_toggle").removeClass("active");
+      allowedCamera = true;
+      cameraUp();
+      $("#button_camera").removeClass("active");
     }
     else if (e.keyCode == '82') {
       allowedJump = true;
@@ -296,8 +298,8 @@
   $("#button_right").mousedown(rightDown);
   $("#button_right").click(rightUp);
 
-  $("#button_toggle").mousedown(toggleDown);
-  $("#button_toggle").click(toggleUp);
+  $("#button_camera").mousedown(cameraDown);
+  $("#button_camera").click(cameraUp);
 
   $("#button_stop").mousedown(stopDown);
   $("#button_stop").click(stopUp);
@@ -384,14 +386,21 @@
     console.log('-stop');
   }
 
-  function toggleDown() {
-    socket.emit('clientToServer', 'toggle');
-    console.log('toggle');
+  function cameraDown() {
+    if (allowPan == false)
+    {
+      allowPan = true;
+    }
+    else
+    {
+      allowPan = false;
+    }
+
+    console.log('camera');
   }
 
-  function toggleUp() {
-    // socket.emit('clientToServer', '-toggle');
-    // console.log('-toggle');
+  function cameraUp() {
+    console.log('-camera');
   }
 
   function jumpDown() {
@@ -426,5 +435,28 @@
   $(window).resize(function () {
     $("#thumperstream").css({ height: (getPanelWidth() * 0.680851) });
   });
+
+  $(document).mousemove(function(e) {
+    if (allowPan) {
+        self.xPosition = Math.round(e.clientX / $(window).width() * 180);
+        self.yPosition = 180 - Math.round(e.clientY / $(window).height() * 180);
+
+        if (self.xPosition % 5 == 0 && self.xPreviousPosition != self.xPosition)
+        {
+          self.xPreviousPosition = self.xPosition;
+          console.log('X: ' + self.xPosition);
+          socket.emit('clientToServer', 'pan' + self.xPosition);
+        }
+
+        if(self.yPosition % 5 == 0 && self.yPreviousPosition != self.yPosition)
+        {
+          self.yPreviousPosition = self.yPosition;
+          console.log('Y: ' + self.yPosition);
+          socket.emit('clientToServer', 'tilt' + self.yPosition);
+        }
+
+    }
+
+  })
 
 </script>

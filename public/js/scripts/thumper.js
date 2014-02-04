@@ -1,5 +1,5 @@
 /* jshint eqeqeq: false, unused: false, -W041: false */
-/* global $:false, self:false, io:false, data:false */
+/* global $:false, io:false, data:false */
 
 'use strict';
 
@@ -14,6 +14,11 @@ var allowedStop = true;
 var allowedJump = true;
 var allowedGrab = true;
 var allowPan = false;
+
+var xPosition = 0;
+var yPosition = 0;
+var xPreviousPosition = 0;
+var yPreviousPosition = 0;
 
 var socket = io.connect('//localhost:3000');
 
@@ -326,21 +331,21 @@ $(window).resize(function () {
 
 $(document).mousemove(function(e) {
     if (allowPan) {
-        self.xPosition = Math.round(e.clientX / $(window).width() * 180);
-        self.yPosition = 180 - Math.round(e.clientY / $(window).height() * 180);
+        xPosition = Math.round(e.clientX / $(window).width() * 180);
+        yPosition = 180 - Math.round(e.clientY / $(window).height() * 180);
 
-        if (self.xPosition % 5 == 0 && self.xPreviousPosition != self.xPosition)
+        if (xPosition % 5 == 0 && xPreviousPosition != xPosition)
         {
-            self.xPreviousPosition = self.xPosition;
-            console.log('X: ' + self.xPosition);
-            socket.emit('clientToThumper', 'pan' + self.xPosition);
+            xPreviousPosition = xPosition;
+            console.log('X: ' + xPosition);
+            socket.emit('clientToLynx', 'pan' + xPosition);
         }
 
-        if(self.yPosition % 5 == 0 && self.yPreviousPosition != self.yPosition)
+        if(yPosition % 5 == 0 && yPreviousPosition != yPosition)
         {
-            self.yPreviousPosition = self.yPosition;
-            console.log('Y: ' + self.yPosition);
-            socket.emit('clientToThumper', 'tilt' + self.yPosition);
+            yPreviousPosition = yPosition;
+            console.log('Y: ' + yPosition);
+            socket.emit('clientToLynx', 'tilt' + yPosition);
         }
 
     }

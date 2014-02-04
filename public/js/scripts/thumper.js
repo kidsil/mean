@@ -18,72 +18,72 @@ var allowPan = false;
 var socket = io.connect('//localhost:3000');
 
 function forwardDown() {
-    socket.emit('clientToServer', 'forward');
+    socket.emit('clientToThumper', 'forward');
     console.log('forward');
 }
 
 function forwardUp(){
-    socket.emit('clientToServer', '-forward');
+    socket.emit('clientToThumper', '-forward');
     console.log('-forward');
 }
 
 function backwardDown() {
-    socket.emit('clientToServer', 'backward');
+    socket.emit('clientToThumper', 'backward');
     console.log('backward');
 }
 
 function backwardUp() {
-    socket.emit('clientToServer', '-backward');
+    socket.emit('clientToThumper', '-backward');
     console.log('-backward');
 }
 
 function leftDown() {
-    socket.emit('clientToServer', 'left');
+    socket.emit('clientToThumper', 'left');
     console.log('left');
 }
 
 function leftUp() {
-    socket.emit('clientToServer', '-left');
+    socket.emit('clientToThumper', '-left');
     console.log('-left');
 }
 
 function rightDown() {
-    socket.emit('clientToServer', 'right');
+    socket.emit('clientToThumper', 'right');
     console.log('right');
 }
 
 function rightUp() {
-    socket.emit('clientToServer', '-right');
+    socket.emit('clientToThumper', '-right');
     console.log('-right');
 }
 
 function shiftLeftDown() {
-    socket.emit('clientToServer', 'shiftl');
+    socket.emit('clientToThumper', 'shiftl');
     console.log('shiftl');
 }
 
 function shiftLeftUp() {
-    socket.emit('clientToServer', '-shiftl');
+    socket.emit('clientToThumper', '-shiftl');
     console.log('-shiftl');
 }
 
 function shiftRightDown() {
-    socket.emit('clientToServer', 'shiftr');
+    socket.emit('clientToThumper', 'shiftr');
     console.log('shiftr');
 }
 
 function shiftRightUp() {
-    socket.emit('clientToServer', '-shiftr');
+    socket.emit('clientToThumper', '-shiftr');
     console.log('-shiftr');
 }
 
 function stopDown() {
-    socket.emit('clientToServer', 'stop');
+    socket.emit('clientToThumper', 'stop');
     console.log('stop');
 }
 
 function stopUp() {
-    socket.emit('clientToServer', '-stop');
+    socket.emit('clientToThumper', '-stop');
     console.log('-stop');
 }
 
@@ -105,22 +105,22 @@ function cameraUp() {
 }
 
 function jumpDown() {
-    socket.emit('clientToServer', 'jump');
+    socket.emit('clientToThumper', 'jump');
     console.log('jump');
 }
 
 function jumpUp() {
-    socket.emit('clientToServer', '-jump');
+    socket.emit('clientToThumper', '-jump');
     console.log('-jump');
 }
 
 function grabDown() {
-    socket.emit('clientToServer', 'grab');
+    socket.emit('clientToThumper', 'grab');
     console.log('grab');
 }
 
 function grabUp() {
-    socket.emit('clientToServer', '-grab');
+    socket.emit('clientToThumper', '-grab');
     console.log('-grab');
 }
 
@@ -333,14 +333,14 @@ $(document).mousemove(function(e) {
         {
             self.xPreviousPosition = self.xPosition;
             console.log('X: ' + self.xPosition);
-            socket.emit('clientToServer', 'pan' + self.xPosition);
+            socket.emit('clientToThumper', 'pan' + self.xPosition);
         }
 
         if(self.yPosition % 5 == 0 && self.yPreviousPosition != self.yPosition)
         {
             self.yPreviousPosition = self.yPosition;
             console.log('Y: ' + self.yPosition);
-            socket.emit('clientToServer', 'tilt' + self.yPosition);
+            socket.emit('clientToThumper', 'tilt' + self.yPosition);
         }
 
     }

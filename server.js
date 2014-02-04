@@ -77,16 +77,22 @@ var io = require('socket.io').listen(app.listen(port));
 console.log('Express app started on port ' + port);
 
 // Socket.IO functions
-function relayCommand(a) {
-    console.log('Received command from client: ' + a);
-    io.sockets.emit('serverToPython', a);
+function relayToLynx(a) {
+    console.log('Received command from client to Lynx: ' + a);
+    io.sockets.emit('serverToLynx', a);
+}
+
+function relayToThumper(a) {
+    console.log('Received command from client to Thumper: ' + a);
+    io.sockets.emit('serverToThumper', a);
 }
 
 // Socket.IO actions on connection
 io.sockets.on('connection', function(socket) {
     socket.emit('hello', { message: 'Hello!' });
     socket.on('clientType', console.log);
-    socket.on('clientToServer', relayCommand);
+    socket.on('clientToLynx', relayToLynx);
+    socket.on('clientToThumper', relayToThumper);
 });
 
 // Initializing logger

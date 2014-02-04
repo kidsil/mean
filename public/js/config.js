@@ -16,8 +16,11 @@ angular.module('mean').config(['$routeProvider',
         when('/articles/:articleId', {
             templateUrl: 'views/articles/view.html'
         }).
-        when('/sandbox', {
-            templateUrl: 'views/sandbox/sandbox.html'
+        when('/lynx', {
+            templateUrl: 'views/robots/lynx.html'
+        }).
+        when('/thumper', {
+            templateUrl: 'views/robots/thumper.html'
         }).
         when('/', {
             templateUrl: 'views/index.html'

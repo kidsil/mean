@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean', ['ngCookies', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ui.route', 'mean.system', 'mean.articles', 'mean.sandbox']);
+angular.module('mean', ['ngCookies', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ui.route', 'mean.system', 'mean.articles', 'mean.robots']);
 
 angular.module('mean.system', []);
 angular.module('mean.articles', []);
-angular.module('mean.sandbox', []);
+angular.module('mean.robots', []);

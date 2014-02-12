@@ -209,3 +209,13 @@ $('#videostream').css({ height: (getPanelWidth() * 0.680851) });
 
 document.onkeydown = checkKeyDown;
 document.onkeyup = checkKeyUp;
+
+$(document).keydown(function(e) {
+    var key = e.which;
+    if(key == 32 || key == 35 || key == 36 || key == 37 || key == 39) {
+        e.preventDefault();
+        return false;
+    }
+
+    return true;
+});

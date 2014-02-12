@@ -11,7 +11,7 @@ var allowedSpeedUp = true;
 var allowedSpeedDown = true;
 var allowPan = false;
 
-var socket = io.connect('//localhost:3000');
+var socket = io.connect('//192.168.1.33:3000');
 
 function forwardDown() {
     socket.emit('clientToThumper', 'forward');

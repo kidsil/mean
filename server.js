@@ -87,12 +87,24 @@ function relayToThumper(a) {
     io.sockets.emit('serverToThumper', a);
 }
 
+function relayThumperToClient(a) {
+    console.log('Received speed from Thumper to client: ' + a);
+    io.sockets.emit('thumperToClient', a);
+}
+
+function relayLynxToClient(a) {
+    console.log('Received speed from Lynx to client: ' + a);
+    io.sockets.emit('lynxToClient', a);
+}
+
 // Socket.IO actions on connection
 io.sockets.on('connection', function(socket) {
     socket.emit('hello', { message: 'Hello!' });
     socket.on('clientType', console.log);
     socket.on('clientToLynx', relayToLynx);
     socket.on('clientToThumper', relayToThumper);
+    socket.on('thumperToServer', relayThumperToClient);
+    socket.on('lynxToServer', relayLynxToClient);
 });
 
 // Initializing logger

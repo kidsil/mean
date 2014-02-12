@@ -205,6 +205,10 @@ socket.on('hello', function(data) {
     socket.emit('clientType', 'PC (Thumper) Connected');
 });
 
+socket.on('thumperToClient', function(data) {
+    $('#speed').html(data);
+});
+
 $('#videostream').css({ height: (getPanelWidth() * 0.680851) });
 
 document.onkeydown = checkKeyDown;

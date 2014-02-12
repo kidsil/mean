@@ -414,6 +414,10 @@ socket.on('hello', function(data) {
     socket.emit('clientType', 'PC (Lynx) Connected');
 });
 
+socket.on('lynxToClient', function(data) {
+    $('#speed').html(data);
+});
+
 $('#videostream').css({ height: (getPanelWidth() * 0.680851) });
 
 document.onkeydown = checkKeyDown;

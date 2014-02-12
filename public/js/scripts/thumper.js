@@ -212,7 +212,7 @@ document.onkeyup = checkKeyUp;
 
 $(document).keydown(function(e) {
     var key = e.which;
-    if(key == 32 || key == 35 || key == 36 || key == 37 || key == 39) {
+    if(key == 32 || key == 37 || key == 38 || key == 39 || key == 40) {
         e.preventDefault();
         return false;
     }

@@ -183,8 +183,18 @@ p, a, label, input, button, span, h1, h2, h3, h4, h5, h6, body {
 
 .button-key {
     width: 120px;
-    font-size: 16px;
+    font-size: 14px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
+
+.button-key-thumper {
+    width: 260px;
+    font-size: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 
 .sub-container {
     width: 75%;

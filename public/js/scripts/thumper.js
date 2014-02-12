@@ -7,18 +7,9 @@ var allowedForward = true;
 var allowedBackward = true;
 var allowedLeft = true;
 var allowedRight = true;
-var allowedShiftR = true;
-var allowedShiftL = true;
-var allowedCamera = true;
-var allowedStop = true;
-var allowedJump = true;
-var allowedGrab = true;
+var allowedSpeedUp = true;
+var allowedSpeedDown = true;
 var allowPan = false;
-
-var xPosition = 0;
-var yPosition = 0;
-var xPreviousPosition = 0;
-var yPreviousPosition = 0;
 
 var socket = io.connect('//localhost:3000');
 
@@ -62,77 +53,30 @@ function rightUp() {
     console.log('-right');
 }
 
-function shiftLeftDown() {
-    socket.emit('clientToThumper', 'shiftl');
-    console.log('shiftl');
+function speedDownDown() {
+    socket.emit('clientToThumper', 'speeddown');
+    console.log('speeddown');
 }
 
-function shiftLeftUp() {
-    socket.emit('clientToThumper', '-shiftl');
-    console.log('-shiftl');
+function speedDownUp() {
+    socket.emit('clientToThumper', '-speeddown');
+    console.log('-speeddown');
 }
 
-function shiftRightDown() {
-    socket.emit('clientToThumper', 'shiftr');
-    console.log('shiftr');
+function speedUpDown() {
+    socket.emit('clientToThumper', 'speedup');
+    console.log('speedup');
 }
 
-function shiftRightUp() {
-    socket.emit('clientToThumper', '-shiftr');
-    console.log('-shiftr');
-}
-
-function stopDown() {
-    socket.emit('clientToThumper', 'stop');
-    console.log('stop');
-}
-
-function stopUp() {
-    socket.emit('clientToThumper', '-stop');
-    console.log('-stop');
-}
-
-function cameraDown() {
-    if (allowPan == false)
-    {
-        allowPan = true;
-    }
-    else
-    {
-        allowPan = false;
-    }
-
-    console.log('camera');
-}
-
-function cameraUp() {
-    console.log('-camera');
-}
-
-function jumpDown() {
-    socket.emit('clientToThumper', 'jump');
-    console.log('jump');
-}
-
-function jumpUp() {
-    socket.emit('clientToThumper', '-jump');
-    console.log('-jump');
-}
-
-function grabDown() {
-    socket.emit('clientToThumper', 'grab');
-    console.log('grab');
-}
-
-function grabUp() {
-    socket.emit('clientToThumper', '-grab');
-    console.log('-grab');
+function speedUpUp() {
+    socket.emit('clientToThumper', '-speedup');
+    console.log('-speedup');
 }
 
 function checkKeyDown(e) {
     e = e || window.event;
 
-    if (e.keyCode == '87') {
+    if (e.keyCode == '87' || e.keyCode == '38') {
         if (!allowedForward)
         {
             return;
@@ -142,7 +86,7 @@ function checkKeyDown(e) {
         forwardDown();
         $('#button_up').addClass('active');
     }
-    else if (e.keyCode == '83') {
+    else if (e.keyCode == '83' || e.keyCode == '40') {
         if (!allowedBackward)
         {
             return;
@@ -152,7 +96,7 @@ function checkKeyDown(e) {
         backwardDown();
         $('#button_down').addClass('active');
     }
-    else if (e.keyCode == '65') {
+    else if (e.keyCode == '65' || e.keyCode == '37') {
         if (!allowedLeft)
         {
             return;
@@ -162,7 +106,7 @@ function checkKeyDown(e) {
         leftDown();
         $('#button_left').addClass('active');
     }
-    else if (e.keyCode == '68') {
+    else if (e.keyCode == '68' || e.keyCode == '39') {
         if (!allowedRight)
         {
             return;
@@ -172,65 +116,25 @@ function checkKeyDown(e) {
         rightDown();
         $('#button_right').addClass('active');
     }
-    else if (e.keyCode == '88') {
-        if (!allowedStop)
-        {
-            return;
-        }
-
-        allowedStop = false;
-        stopDown();
-        $('#button_stop').addClass('active');
-    }
-    else if (e.keyCode == '90') {
-        if (!allowedCamera)
-        {
-            return;
-        }
-
-        allowedCamera = false;
-        cameraDown();
-        $('#button_camera').addClass('active');
-    }
-    else if (e.keyCode == '82') {
-        if (!allowedJump)
-        {
-            return;
-        }
-
-        allowedJump = false;
-        jumpDown();
-        $('#button_jump').addClass('active');
-    }
-    else if (e.keyCode == '70') {
-        if (!allowedGrab)
-        {
-            return;
-        }
-
-        allowedGrab = false;
-        grabDown();
-        $('#button_grab').addClass('active');
-    }
     else if (e.keyCode == '69') {
-        if (!allowedShiftR)
+        if (!allowedSpeedUp)
         {
             return;
         }
     
-        allowedShiftR = false;
-        shiftRightDown();
-        $('#button_shiftr').addClass('active');
+        allowedSpeedUp = false;
+        speedUpDown();
+        $('#button_speedup').addClass('active');
     }
     else if (e.keyCode == '81') {
-        if (!allowedShiftL)
+        if (!allowedSpeedDown)
         {
             return;
         }
 
-        allowedShiftL = false;
-        shiftLeftDown();
-        $('#button_shiftl').addClass('active');
+        allowedSpeedDown = false;
+        speedDownDown();
+        $('#button_speeddown').addClass('active');
     }
 
 }
@@ -238,55 +142,35 @@ function checkKeyDown(e) {
 function checkKeyUp(e) {
     e = e || window.event;
 
-    if (e.keyCode == '87') {
+    if (e.keyCode == '87' || e.keyCode == '38') {
         allowedForward = true;
         forwardUp();
         $('#button_up').removeClass('active');
     }
-    else if (e.keyCode == '83') {
+    else if (e.keyCode == '83' || e.keyCode == '40') {
         allowedBackward = true;
         backwardUp();
         $('#button_down').removeClass('active');
     }
-    else if (e.keyCode == '65') {
+    else if (e.keyCode == '65' || e.keyCode == '37') {
         allowedLeft = true;
         leftUp();
         $('#button_left').removeClass('active');
     }
-    else if (e.keyCode == '68') {
+    else if (e.keyCode == '68' || e.keyCode == '39') {
         allowedRight = true;
         rightUp();
         $('#button_right').removeClass('active');
     }
-    else if (e.keyCode == '88') {
-        allowedStop = true;
-        stopUp();
-        $('#button_stop').removeClass('active');
-    }
-    else if (e.keyCode == '90') {
-        allowedCamera = true;
-        cameraUp();
-        $('#button_camera').removeClass('active');
-    }
-    else if (e.keyCode == '82') {
-        allowedJump = true;
-        jumpUp();
-        $('#button_jump').removeClass('active');
-    }
-    else if (e.keyCode == '70') {
-        allowedGrab = true;
-        grabUp();
-        $('#button_grab').removeClass('active');
-    }
     else if (e.keyCode == '69') {
-        allowedShiftR = true;
-        shiftRightUp();
-        $('#button_shiftr').removeClass('active');
+        allowedSpeedUp = true;
+        speedUpUp();
+        $('#button_speedup').removeClass('active');
     }
     else if (e.keyCode == '81') {
-        allowedShiftL = true;
-        shiftLeftUp();
-        $('#button_shiftl').removeClass('active');
+        allowedSpeedDown = true;
+        speedDownUp();
+        $('#button_speeddown').removeClass('active');
     }
 
 }
@@ -307,49 +191,14 @@ $('#button_left').click(leftUp);
 $('#button_right').mousedown(rightDown);
 $('#button_right').click(rightUp);
 
-$('#button_camera').mousedown(cameraDown);
-$('#button_camera').click(cameraUp);
+$('#button_speedup').mousedown(speedUpDown);
+$('#button_speedup').click(speedUpUp);
 
-$('#button_stop').mousedown(stopDown);
-$('#button_stop').click(stopUp);
-
-$('#button_jump').mousedown(jumpDown);
-$('#button_jump').click(jumpUp);
-
-$('#button_grab').mousedown(grabDown);
-$('#button_grab').click(grabUp);
-
-$('#button_shiftr').mousedown(shiftRightDown);
-$('#button_shiftr').click(shiftRightUp);
-
-$('#button_shiftl').mousedown(shiftLeftDown);
-$('#button_shiftl').click(shiftLeftUp);
+$('#button_speeddown').mousedown(speedDownDown);
+$('#button_speeddown').click(speedDownUp);
 
 $(window).resize(function () {
     $('#videostream').css({ height: (getPanelWidth() * 0.680851) });
-});
-
-$(document).mousemove(function(e) {
-    if (allowPan) {
-        xPosition = Math.round(e.clientX / $(window).width() * 180);
-        yPosition = 180 - Math.round(e.clientY / $(window).height() * 180);
-
-        if (xPosition % 5 == 0 && xPreviousPosition != xPosition)
-        {
-            xPreviousPosition = xPosition;
-            console.log('X: ' + xPosition);
-            socket.emit('clientToLynx', 'pan' + xPosition);
-        }
-
-        if(yPosition % 5 == 0 && yPreviousPosition != yPosition)
-        {
-            yPreviousPosition = yPosition;
-            console.log('Y: ' + yPosition);
-            socket.emit('clientToLynx', 'tilt' + yPosition);
-        }
-
-    }
-
 });
 
 socket.on('hello', function(data) {

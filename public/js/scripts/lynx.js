@@ -7,11 +7,13 @@ var allowedForward = true;
 var allowedBackward = true;
 var allowedLeft = true;
 var allowedRight = true;
-var allowedShiftR = true;
-var allowedShiftL = true;
+var allowedSpeedUp = true;
+var allowedSpeedDown = true;
 var allowedCamera = true;
-var allowedStop = true;
-var allowedJump = true;
+var allowedElbowUp = true;
+var allowedElbowDown = true;
+var allowedWristLeft = true;
+var allowedWristRight = true;
 var allowedGrab = true;
 var allowPan = false;
 
@@ -62,34 +64,24 @@ function rightUp() {
     console.log('-right');
 }
 
-function shiftLeftDown() {
-    socket.emit('clientToLynx', 'shiftl');
-    console.log('shiftl');
+function speedDownDown() {
+    socket.emit('clientToLynx', 'speeddown');
+    console.log('speeddown');
 }
 
-function shiftLeftUp() {
-    socket.emit('clientToLynx', '-shiftl');
-    console.log('-shiftl');
+function speedDownUp() {
+    socket.emit('clientToLynx', '-speeddown');
+    console.log('-speeddown');
 }
 
-function shiftRightDown() {
-    socket.emit('clientToLynx', 'shiftr');
-    console.log('shiftr');
+function speedUpDown() {
+    socket.emit('clientToLynx', 'speedup');
+    console.log('speedup');
 }
 
-function shiftRightUp() {
-    socket.emit('clientToLynx', '-shiftr');
-    console.log('-shiftr');
-}
-
-function stopDown() {
-    socket.emit('clientToLynx', 'stop');
-    console.log('stop');
-}
-
-function stopUp() {
-    socket.emit('clientToLynx', '-stop');
-    console.log('-stop');
+function speedUpUp() {
+    socket.emit('clientToLynx', '-speedup');
+    console.log('-speedup');
 }
 
 function cameraDown() {
@@ -109,14 +101,44 @@ function cameraUp() {
     console.log('-camera');
 }
 
-function jumpDown() {
-    socket.emit('clientToLynx', 'jump');
-    console.log('jump');
+function wristLeftDown() {
+    socket.emit('clientToLynx', 'wristleft');
+    console.log('wristleft');
 }
 
-function jumpUp() {
-    socket.emit('clientToLynx', '-jump');
-    console.log('-jump');
+function wristLeftUp() {
+    socket.emit('clientToLynx', '-wristleft');
+    console.log('-wristleft');
+}
+
+function wristRightDown() {
+    socket.emit('clientToLynx', 'wristright');
+    console.log('wristright');
+}
+
+function wristRightUp() {
+    socket.emit('clientToLynx', '-wristright');
+    console.log('-wristright');
+}
+
+function elbowUpDown() {
+    socket.emit('clientToLynx', 'elbowup');
+    console.log('elbowup');
+}
+
+function elbowUpUp() {
+    socket.emit('clientToLynx', '-elbowup');
+    console.log('-elbowup');
+}
+
+function elbowDownDown() {
+    socket.emit('clientToLynx', 'elbowdown');
+    console.log('elbowdown');
+}
+
+function elbowDownUp() {
+    socket.emit('clientToLynx', '-elbowdown');
+    console.log('-elbowdown');
 }
 
 function grabDown() {
@@ -132,7 +154,7 @@ function grabUp() {
 function checkKeyDown(e) {
     e = e || window.event;
 
-    if (e.keyCode == '87') {
+    if (e.keyCode == '87' || e.keyCode == '38') {
         if (!allowedForward)
         {
             return;
@@ -142,7 +164,7 @@ function checkKeyDown(e) {
         forwardDown();
         $('#button_up').addClass('active');
     }
-    else if (e.keyCode == '83') {
+    else if (e.keyCode == '83' || e.keyCode == '40') {
         if (!allowedBackward)
         {
             return;
@@ -152,7 +174,7 @@ function checkKeyDown(e) {
         backwardDown();
         $('#button_down').addClass('active');
     }
-    else if (e.keyCode == '65') {
+    else if (e.keyCode == '65' || e.keyCode == '37') {
         if (!allowedLeft)
         {
             return;
@@ -162,7 +184,7 @@ function checkKeyDown(e) {
         leftDown();
         $('#button_left').addClass('active');
     }
-    else if (e.keyCode == '68') {
+    else if (e.keyCode == '68' || e.keyCode == '39') {
         if (!allowedRight)
         {
             return;
@@ -172,17 +194,7 @@ function checkKeyDown(e) {
         rightDown();
         $('#button_right').addClass('active');
     }
-    else if (e.keyCode == '88') {
-        if (!allowedStop)
-        {
-            return;
-        }
-
-        allowedStop = false;
-        stopDown();
-        $('#button_stop').addClass('active');
-    }
-    else if (e.keyCode == '90') {
+    else if (e.keyCode == '16') {
         if (!allowedCamera)
         {
             return;
@@ -192,17 +204,67 @@ function checkKeyDown(e) {
         cameraDown();
         $('#button_camera').addClass('active');
     }
-    else if (e.keyCode == '82') {
-        if (!allowedJump)
+    else if (e.keyCode == '69') {
+        if (!allowedSpeedUp)
+        {
+            return;
+        }
+    
+        allowedSpeedUp = false;
+        speedUpDown();
+        $('#button_speedup').addClass('active');
+    }
+    else if (e.keyCode == '81') {
+        if (!allowedSpeedDown)
         {
             return;
         }
 
-        allowedJump = false;
-        jumpDown();
-        $('#button_jump').addClass('active');
+        allowedSpeedDown = false;
+        speedDownDown();
+        $('#button_speeddown').addClass('active');
+    }
+    else if (e.keyCode == '82') {
+        if (!allowedElbowUp)
+        {
+            return;
+        }
+
+        allowedElbowUp = false;
+        elbowUpDown();
+        $('#button_elbowup').addClass('active');
     }
     else if (e.keyCode == '70') {
+        if (!allowedElbowDown)
+        {
+            return;
+        }
+
+        allowedElbowDown = false;
+        elbowDownDown();
+        $('#button_elbowdown').addClass('active');
+    }
+    else if (e.keyCode == '3') {
+        if (!allowedWristLeft)
+        {
+            return;
+        }
+
+        allowedWristLeft = false;
+        wristLeftDown();
+        $('#button_wristleft').addClass('active');
+    }
+    else if (e.keyCode == '4') {
+        if (!allowedWristRight)
+        {
+            return;
+        }
+
+        allowedWristRight = false;
+        wristRightDown();
+        $('#button_wristright').addClass('active');
+    }
+    else if (e.keyCode == '32') {
         if (!allowedGrab)
         {
             return;
@@ -212,81 +274,71 @@ function checkKeyDown(e) {
         grabDown();
         $('#button_grab').addClass('active');
     }
-    else if (e.keyCode == '69') {
-        if (!allowedShiftR)
-        {
-            return;
-        }
-    
-        allowedShiftR = false;
-        shiftRightDown();
-        $('#button_shiftr').addClass('active');
-    }
-    else if (e.keyCode == '81') {
-        if (!allowedShiftL)
-        {
-            return;
-        }
-
-        allowedShiftL = false;
-        shiftLeftDown();
-        $('#button_shiftl').addClass('active');
-    }
 
 }
 
 function checkKeyUp(e) {
     e = e || window.event;
 
-    if (e.keyCode == '87') {
+    if (e.keyCode == '87' || e.keyCode == '38') {
         allowedForward = true;
         forwardUp();
         $('#button_up').removeClass('active');
     }
-    else if (e.keyCode == '83') {
+    else if (e.keyCode == '83' || e.keyCode == '40') {
         allowedBackward = true;
         backwardUp();
         $('#button_down').removeClass('active');
     }
-    else if (e.keyCode == '65') {
+    else if (e.keyCode == '65' || e.keyCode == '37') {
         allowedLeft = true;
         leftUp();
         $('#button_left').removeClass('active');
     }
-    else if (e.keyCode == '68') {
+    else if (e.keyCode == '68' || e.keyCode == '39') {
         allowedRight = true;
         rightUp();
         $('#button_right').removeClass('active');
     }
-    else if (e.keyCode == '88') {
-        allowedStop = true;
-        stopUp();
-        $('#button_stop').removeClass('active');
-    }
-    else if (e.keyCode == '90') {
+    else if (e.keyCode == '16') {
         allowedCamera = true;
         cameraUp();
         $('#button_camera').removeClass('active');
     }
+    else if (e.keyCode == '69') {
+        allowedSpeedUp = true;
+        speedUpUp();
+        $('#button_speedup').removeClass('active');
+    }
+    else if (e.keyCode == '81') {
+        allowedSpeedDown = true;
+        speedDownUp();
+        $('#button_speeddown').removeClass('active');
+    }
     else if (e.keyCode == '82') {
-        allowedJump = true;
-        jumpUp();
-        $('#button_jump').removeClass('active');
+        allowedElbowUp = true;
+        elbowUpUp();
+        $('#button_elbowup').removeClass('active');
     }
     else if (e.keyCode == '70') {
+        allowedElbowDown = true;
+        elbowDownUp();
+        $('#button_elbowdown').removeClass('active');
+    }
+    else if (e.keyCode == '3') {
+        allowedWristLeft = true;
+        wristLeftUp();
+        $('#button_wristleft').removeClass('active');
+    }
+    else if (e.keyCode == '4') {
+        allowedWristRight = true;
+        wristRightUp();
+        $('#button_wristright').removeClass('active');
+    }
+    else if (e.keyCode == '32') {
         allowedGrab = true;
         grabUp();
         $('#button_grab').removeClass('active');
-    }
-    else if (e.keyCode == '69') {
-        allowedShiftR = true;
-        shiftRightUp();
-        $('#button_shiftr').removeClass('active');
-    }
-    else if (e.keyCode == '81') {
-        allowedShiftL = true;
-        shiftLeftUp();
-        $('#button_shiftl').removeClass('active');
     }
 
 }
@@ -310,20 +362,26 @@ $('#button_right').click(rightUp);
 $('#button_camera').mousedown(cameraDown);
 $('#button_camera').click(cameraUp);
 
-$('#button_stop').mousedown(stopDown);
-$('#button_stop').click(stopUp);
+$('#button_speedup').mousedown(speedUpDown);
+$('#button_speedup').click(speedUpUp);
 
-$('#button_jump').mousedown(jumpDown);
-$('#button_jump').click(jumpUp);
+$('#button_speeddown').mousedown(speedDownDown);
+$('#button_speeddown').click(speedDownUp);
+
+$('#button_elbowup').mousedown(elbowUpDown);
+$('#button_elbowup').click(elbowUpUp);
+
+$('#button_elbowdown').mousedown(elbowDownDown);
+$('#button_elbowdown').click(elbowDownUp);
+
+$('#button_wristleft').mousedown(wristLeftDown);
+$('#button_wristleft').click(wristLeftUp);
+
+$('#button_wristright').mousedown(wristRightDown);
+$('#button_wristright').click(wristRightUp);
 
 $('#button_grab').mousedown(grabDown);
 $('#button_grab').click(grabUp);
-
-$('#button_shiftr').mousedown(shiftRightDown);
-$('#button_shiftr').click(shiftRightUp);
-
-$('#button_shiftl').mousedown(shiftLeftDown);
-$('#button_shiftl').click(shiftLeftUp);
 
 $(window).resize(function () {
     $('#videostream').css({ height: (getPanelWidth() * 0.680851) });
@@ -360,3 +418,13 @@ $('#videostream').css({ height: (getPanelWidth() * 0.680851) });
 
 document.onkeydown = checkKeyDown;
 document.onkeyup = checkKeyUp;
+
+$(document).keydown(function(e) {
+    var key = e.which;
+    if(key == 32 || key == 35 || key == 36 || key == 37 || key == 39) {
+        e.preventDefault();
+        return false;
+    }
+
+    return true;
+});

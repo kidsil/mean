@@ -13,12 +13,15 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 
     $scope.menu = [{
         'title': 'Home',
+        'state': 'home',
         'link': ''
     }, {
         'title': 'Control the Lynx',
+        'state': 'lynx',
         'link': 'lynx'
     }, {
         'title': 'Control the Thumper',
+        'state': 'thumper',
         'link': 'thumper'
     }];
     

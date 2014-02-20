@@ -24,11 +24,11 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
             url: '/articles/:articleId',
             templateUrl: 'views/articles/view.html'
         })
-        .state('lynx robot', {
+        .state('lynx', {
             url: '/lynx',
             templateUrl: 'views/robots/lynx.html'
         })
-        .state('thumper robot', {
+        .state('thumper', {
             url: '/thumper',
             templateUrl: 'views/robots/thumper.html'
         })

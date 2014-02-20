@@ -1,32 +1,40 @@
 'use strict';
 
 //Setting up route
-angular.module('mean').config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.
-        when('/articles', {
+angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
+        // For unmatched routes:
+        $urlRouterProvider.otherwise('/');
+
+        // states for my app
+        $stateProvider
+        .state('all articles', {
+            url: '/articles',
             templateUrl: 'views/articles/list.html'
-        }).
-        when('/articles/create', {
+        })
+        .state('create article', {
+            url: '/articles/create',
             templateUrl: 'views/articles/create.html'
-        }).
-        when('/articles/:articleId/edit', {
+        })
+        .state('edit article', {
+            url: '/articles/:articleId/edit',
             templateUrl: 'views/articles/edit.html'
-        }).
-        when('/articles/:articleId', {
+        })
+        .state('article by id', {
+            url: '/articles/:articleId',
             templateUrl: 'views/articles/view.html'
-        }).
-        when('/lynx', {
+        })
+        .state('lynx robot', {
+            url: '/lynx',
             templateUrl: 'views/robots/lynx.html'
-        }).
-        when('/thumper', {
+        })
+        .state('thumper robot', {
+            url: '/thumper',
             templateUrl: 'views/robots/thumper.html'
-        }).
-        when('/', {
+        })
+        .state('home', {
+            url: '/',
             templateUrl: 'views/index.html'
-        }).
-        otherwise({
-            redirectTo: '/'
         });
     }
 ]);

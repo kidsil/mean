@@ -347,6 +347,10 @@ function getPanelWidth() {
     return ($('#videostream').width());
 }
 
+function getPanelWidthWebkit() {
+    return ($('#videostreamwebkit').width());
+}
+
 $('#button_up').mousedown(forwardDown);
 $('#button_up').click(forwardUp);
 
@@ -385,6 +389,7 @@ $('#button_grab').click(grabUp);
 
 $(window).resize(function () {
     $('#videostream').css({ height: (getPanelWidth() * 0.680851) });
+    $('#videostreamwebkit').css({ height: (getPanelWidthWebkit() * 0.680851) });
 });
 
 $(document).mousemove(function(e) {
@@ -419,6 +424,7 @@ socket.on('lynxToClient', function(data) {
 });
 
 $('#videostream').css({ height: (getPanelWidth() * 0.680851) });
+$('#videostreamwebkit').css({ height: (getPanelWidthWebkit() * 0.680851) });
 
 document.onkeydown = checkKeyDown;
 document.onkeyup = checkKeyUp;

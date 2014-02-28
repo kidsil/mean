@@ -1,14 +1,24 @@
 'use strict';
 
-angular.module('mean.system').controller('IndexController', ['$scope', 'Global', function ($scope, Global) {
+angular.module('mean.system').controller('IndexController', ['$scope', '$location', '$anchorScroll', 'Global', 'Follows', function ($scope, $location, $anchorScroll, Global, Follows) {
     $scope.global = Global;
-}]);
 
-angular.module('mean.system').controller('IndexController', function($scope, $location, $anchorScroll) {
+    $scope.create = function() {
+        var follow = new Follows({
+            email: this.email
+        });
+        follow.$save(function() {
+            $location.path('lynx');
+        });
+
+        this.email = '';
+    };
+
     $scope.scrollTo = function(id) {
         var old = $location.hash();
         $location.hash(id);
         $anchorScroll();
         $location.hash(old);
     };
-});
+
+}]);

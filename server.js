@@ -112,3 +112,15 @@ logger.init(app, passport, mongoose);
 
 // Expose app
 exports = module.exports = app;
+
+// Poll database
+var Queue = mongoose.model('Queue');
+
+setInterval(function() {
+    Queue.findOne({
+        session_id: 'HWOEtiRsJUZu0fDI7k66URPA'
+    })
+    .exec(function(err, queue) {
+        console.log(queue.expire);
+    });
+}, 1000);

@@ -12,11 +12,7 @@ angular.module('mean.robots').controller('RobotsController', ['$scope', '$locati
 
     $scope.joinQueue = function() {
         var queue = new Queues();
-        
-        queue.$save(function() {
-            $location.path('lynx');
-        });
-
+        queue.$save();
         queue.session_id = '';
     };
 }]);

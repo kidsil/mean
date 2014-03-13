@@ -84,7 +84,7 @@ io.configure(function() {
             parseCookie(handshake, null, function(err) {
                 if (err) return;
             });
-            
+
         }
 
         callback(null, true);
@@ -121,7 +121,7 @@ io.sockets.on('connection', function(socket) {
     socket.on('clientToThumper', relayToThumper);
     socket.on('thumperToServer', relayThumperToClient);
     socket.on('lynxToServer', relayLynxToClient);
-    console.log(socket.handshake.signedCookies['connect.sid']);
+    socket.emit('thumperQueue', socket.handshake.signedCookies['connect.sid']);
 });
 
 // Initializing logger
@@ -145,14 +145,19 @@ setInterval(function() {
             {
                 if (!queues[0].expire_time)
                 {
-                    queues[0].expire_time = new Date(Date.now() + 1 * 60000);
+                    queues[0].expire_time = new Date(Date.now() + 1 * 60000 / 6);
                     queues[0].save();
                 }
 
             }
 
-            if (queues[0].expire_time < Date.now())
+            if (!queues[0].expire_time || queues[0].expire_time >= Date.now())
             {
+                io.sockets.emit(queues[0].session_id, 'Go');
+            }
+            else if (queues[0].expire_time < Date.now())
+            {
+                io.sockets.emit(queues[0].session_id, 'Stop');
                 queues[0].remove();
             }
 

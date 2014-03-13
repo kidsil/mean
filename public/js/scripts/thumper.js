@@ -214,6 +214,27 @@ socket.on('thumperToClient', function(data) {
     $('#speed').html(data);
 });
 
+// $('#robotcontrols').hide();
+
+socket.on('thumperQueue', function(id) {
+    console.log(id);
+
+    socket.on(id, function(data) {
+        console.log(data);
+
+        // if (data === 'Go')
+        // {
+        //     $('#robotcontrols').show();
+        // }
+        // else if (data === 'Stop')
+        // {
+        //     $('#robotcontrols').hide();
+        // }
+
+    });
+
+});
+
 $('#videostream').css({ height: (getPanelWidth() * 0.680851) });
 $('#videostreamwebkit').css({ height: (getPanelWidthWebkit() * 0.680851) });
 

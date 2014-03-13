@@ -76,6 +76,22 @@ var port = process.env.PORT || config.port;
 var io = require('socket.io').listen(app.listen(port));
 console.log('Express app started on port ' + port);
 
+var parseCookie = express.cookieParser('MEAN');
+
+io.configure(function() {
+    io.set('authorization', function(handshake, callback) {
+        if(handshake.headers.cookie){
+            parseCookie(handshake, null, function(err) {
+                if (err) return;
+            });
+            
+        }
+
+        callback(null, true);
+    });
+
+});
+
 // Socket.IO functions
 function relayToLynx(a) {
     console.log('Received command from client to Lynx: ' + a);
@@ -105,6 +121,7 @@ io.sockets.on('connection', function(socket) {
     socket.on('clientToThumper', relayToThumper);
     socket.on('thumperToServer', relayThumperToClient);
     socket.on('lynxToServer', relayLynxToClient);
+    console.log(socket.handshake.signedCookies['connect.sid']);
 });
 
 // Initializing logger
@@ -117,10 +134,28 @@ exports = module.exports = app;
 var Queue = mongoose.model('Queue');
 
 setInterval(function() {
-    Queue.findOne({
-        session_id: 'HWOEtiRsJUZu0fDI7k66URPA'
-    })
-    .exec(function(err, queue) {
-        console.log(queue.expire);
-    });
+    Queue
+        .find({}, {}, { sort: { 'created': 1 } })
+        .exec(function (err, queues) {
+            if (!queues || !Array.isArray(queues) || queues.length === 0)
+            {
+                return;
+            }
+            else if (queues.length >= 2)
+            {
+                if (!queues[0].expire_time)
+                {
+                    queues[0].expire_time = new Date(Date.now() + 1 * 60000);
+                    queues[0].save();
+                }
+
+            }
+
+            if (queues[0].expire_time < Date.now())
+            {
+                queues[0].remove();
+            }
+
+        });
+
 }, 1000);

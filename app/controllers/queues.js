@@ -18,7 +18,6 @@ exports.create = function(req, res) {
         if (!queue) {
             queue = new Queue();
             queue.session_id = req.session.id;
-            queue.expire = new Date(Date.now() + 30 * 60000);
 
             queue.save(function(err) {
                 if (err) {
@@ -34,7 +33,6 @@ exports.create = function(req, res) {
             return;
         }
 
-        queue.expire = new Date(Date.now() + 30 * 60000);
         queue.save();
         res.jsonp(queue);
     });

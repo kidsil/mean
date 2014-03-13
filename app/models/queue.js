@@ -15,9 +15,8 @@ var QueueSchema = new Schema({
         default: Date.now,
         required: true
     },
-    expire: {
-        type: Date,
-        required: true
+    expire_time: {
+        type: Date
     },
     session_id: {
         type: String,

@@ -8,7 +8,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$locatio
             email: this.email
         });
         follow.$save(function() {
-            $location.path('lynx');
+            $scope.followed = true;
         });
 
         this.email = '';

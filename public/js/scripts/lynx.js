@@ -22,7 +22,7 @@ var yPosition = 0;
 var xPreviousPosition = 0;
 var yPreviousPosition = 0;
 
-var socket = io.connect('//54.213.169.59');
+var socket = io.connect('//54.213.169.59:3000');
 
 function forwardDown() {
     socket.emit('clientToLynx', 'forward');

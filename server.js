@@ -121,7 +121,11 @@ io.sockets.on('connection', function(socket) {
     socket.on('clientToThumper', relayToThumper);
     socket.on('thumperToServer', relayThumperToClient);
     socket.on('lynxToServer', relayLynxToClient);
-    socket.emit('thumperQueue', socket.handshake.signedCookies['connect.sid']);
+
+    if (socket.handshake.signedCookies)
+    {
+        socket.emit('thumperQueue', socket.handshake.signedCookies['connect.sid']);
+    }
 });
 
 // Initializing logger

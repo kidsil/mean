@@ -3,9 +3,6 @@ body {
     height: 100%;
 }
 
-body {
-}
-
 .wrap {
     min-height: 100%;
     height: auto;
@@ -58,8 +55,11 @@ footer a:hover {
     padding-top: 50px;
 }
 
-.section-frontpage-hero {
+.hero-background {
     background-image: url('/img/images/hero.jpg');
+}
+
+.section-frontpage-hero {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -93,7 +93,6 @@ footer a:hover {
 }
 
 .section-hero {
-    background-image: url('/img/images/hero.jpg');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -184,27 +183,27 @@ p, a, label, input, button, span, h1, h2, h3, h4, h5, h6, body {
 .button-key {
     width: 120px;
     font-size: 14px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .button-key-thumper {
     width: 260px;
     font-size: 20px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 
 .sub-container {
     width: 75%;
-    margin: 0px auto;
+    margin: 0 auto;
 }
 
 .panel-controls {
     background-color: #F0F8FF;
 }
 
-#controls .alert-info {
+.controls .alert-info {
     background-color: #F0F8FF;
 }

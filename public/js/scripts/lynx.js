@@ -22,7 +22,7 @@ var yPosition = 0;
 var xPreviousPosition = 0;
 var yPreviousPosition = 0;
 
-var socket = io.connect('//cloudyrobotics.com:3000');
+var socket = io.connect('//cloudyrobotics.com');
 
 function forwardDown() {
     socket.emit('clientToLynx', 'forward');

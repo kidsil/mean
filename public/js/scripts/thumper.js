@@ -11,7 +11,7 @@ var allowedSpeedUp = true;
 var allowedSpeedDown = true;
 var allowPan = false;
 
-var socket = io.connect('//cloudyrobotics.com:3000');
+var socket = io.connect('//cloudyrobotics.com');
 
 var inControl = false;
 $('#robotcontrols').hide();

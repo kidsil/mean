@@ -13,72 +13,110 @@ var allowPan = false;
 
 var socket = io.connect('//54.213.169.59:3000');
 
+var inControl = false;
+$('#robotcontrols').hide();
+
 function forwardDown() {
-    socket.emit('clientToThumper', 'forward');
-    console.log('forward');
+    if (inControl) {
+        socket.emit('clientToThumper', 'forward');
+        console.log('forward');
+    }
+
 }
 
 function forwardUp(){
-    socket.emit('clientToThumper', '-forward');
-    console.log('-forward');
+    if (inControl) {
+        socket.emit('clientToThumper', '-forward');
+        console.log('-forward');
+    }
+
 }
 
 function backwardDown() {
-    socket.emit('clientToThumper', 'backward');
-    console.log('backward');
+    if (inControl) {
+        socket.emit('clientToThumper', 'backward');
+        console.log('backward');
+    }
+
 }
 
 function backwardUp() {
-    socket.emit('clientToThumper', '-backward');
-    console.log('-backward');
+    if (inControl) {
+        socket.emit('clientToThumper', '-backward');
+        console.log('-backward');
+    }
+
 }
 
 function leftDown() {
-    socket.emit('clientToThumper', 'left');
-    console.log('left');
+    if (inControl) {
+        socket.emit('clientToThumper', 'left');
+        console.log('left');
+    }
+
 }
 
 function leftUp() {
-    socket.emit('clientToThumper', '-left');
-    console.log('-left');
+    if (inControl) {
+        socket.emit('clientToThumper', '-left');
+        console.log('-left');
+    }
+
 }
 
 function rightDown() {
-    socket.emit('clientToThumper', 'right');
-    console.log('right');
+    if (inControl) {
+        socket.emit('clientToThumper', 'right');
+        console.log('right');
+    }
+
 }
 
 function rightUp() {
-    socket.emit('clientToThumper', '-right');
-    console.log('-right');
+    if (inControl) {
+        socket.emit('clientToThumper', '-right');
+        console.log('-right');
+    }
+
 }
 
 function speedDownDown() {
-    socket.emit('clientToThumper', 'speeddown');
-    console.log('speeddown');
+    if (inControl) {
+        socket.emit('clientToThumper', 'speeddown');
+        console.log('speeddown');
+    }
+
 }
 
 function speedDownUp() {
-    socket.emit('clientToThumper', '-speeddown');
-    console.log('-speeddown');
+    if (inControl) {
+        socket.emit('clientToThumper', '-speeddown');
+        console.log('-speeddown');
+    }
+
 }
 
 function speedUpDown() {
-    socket.emit('clientToThumper', 'speedup');
-    console.log('speedup');
+    if (inControl) {
+        socket.emit('clientToThumper', 'speedup');
+        console.log('speedup');
+    }
+
 }
 
 function speedUpUp() {
-    socket.emit('clientToThumper', '-speedup');
-    console.log('-speedup');
+    if (inControl) {
+        socket.emit('clientToThumper', '-speedup');
+        console.log('-speedup');
+    }
+
 }
 
 function checkKeyDown(e) {
     e = e || window.event;
 
     if (e.keyCode == '87' || e.keyCode == '38') {
-        if (!allowedForward)
-        {
+        if (!allowedForward) {
             return;
         }
 
@@ -87,8 +125,7 @@ function checkKeyDown(e) {
         $('#button_up').addClass('active');
     }
     else if (e.keyCode == '83' || e.keyCode == '40') {
-        if (!allowedBackward)
-        {
+        if (!allowedBackward) {
             return;
         }
 
@@ -97,8 +134,7 @@ function checkKeyDown(e) {
         $('#button_down').addClass('active');
     }
     else if (e.keyCode == '65' || e.keyCode == '37') {
-        if (!allowedLeft)
-        {
+        if (!allowedLeft) {
             return;
         }
 
@@ -107,8 +143,7 @@ function checkKeyDown(e) {
         $('#button_left').addClass('active');
     }
     else if (e.keyCode == '68' || e.keyCode == '39') {
-        if (!allowedRight)
-        {
+        if (!allowedRight) {
             return;
         }
 
@@ -117,8 +152,7 @@ function checkKeyDown(e) {
         $('#button_right').addClass('active');
     }
     else if (e.keyCode == '69') {
-        if (!allowedSpeedUp)
-        {
+        if (!allowedSpeedUp) {
             return;
         }
     
@@ -127,8 +161,7 @@ function checkKeyDown(e) {
         $('#button_speedup').addClass('active');
     }
     else if (e.keyCode == '81') {
-        if (!allowedSpeedDown)
-        {
+        if (!allowedSpeedDown) {
             return;
         }
 
@@ -214,7 +247,12 @@ socket.on('thumperToClient', function(data) {
     $('#speed').html(data);
 });
 
-// $('#robotcontrols').hide();
+socket.on('thumperInfo', function(data) {
+    if ((/^Queue/).test(data)) {
+        $('#queuelength').html(data);
+    }
+
+});
 
 socket.on('thumperQueue', function(id) {
     console.log(id);
@@ -222,14 +260,17 @@ socket.on('thumperQueue', function(id) {
     socket.on(id, function(data) {
         console.log(data);
 
-        // if (data === 'Go')
-        // {
-        //     $('#robotcontrols').show();
-        // }
-        // else if (data === 'Stop')
-        // {
-        //     $('#robotcontrols').hide();
-        // }
+        if (data === 'Go') {
+            inControl = true;
+            $('#robotcontrols').show();
+        }
+        else if (data === 'Stop') {
+            inControl = false;
+            $('#robotcontrols').hide();
+        }
+        if ((/^Your/).test(data)) {
+            $('#currentposition').html(data);
+        }
 
     });
 

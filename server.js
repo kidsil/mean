@@ -141,6 +141,8 @@ setInterval(function() {
     Queue
         .find({}, {}, { sort: { 'created': 1 } })
         .exec(function (err, queues) {
+            io.sockets.emit('thumperInfo', 'Queue Length: ' + queues.length);
+
             if (!queues || !Array.isArray(queues) || queues.length === 0)
             {
                 return;
@@ -149,7 +151,7 @@ setInterval(function() {
             {
                 if (!queues[0].expire_time)
                 {
-                    queues[0].expire_time = new Date(Date.now() + 1 * 60000 / 6);
+                    queues[0].expire_time = new Date(Date.now() + 1 * 60000);
                     queues[0].save();
                 }
 
@@ -162,7 +164,15 @@ setInterval(function() {
             else if (queues[0].expire_time < Date.now())
             {
                 io.sockets.emit(queues[0].session_id, 'Stop');
+                io.sockets.emit(queues[0].session_id, 'Your Position: N/A');
                 queues[0].remove();
+
+                var i;
+                for (i = 1; i < queues.length; i++)
+                {
+                    io.sockets.emit(queues[i].session_id, 'Your Position: ' + i);
+                }
+
             }
 
         });

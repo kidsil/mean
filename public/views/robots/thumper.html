@@ -44,10 +44,20 @@
     <div class="row sub-container">
       <div class="col-md-12 text-center">
         <div class="alert alert-info">
-          <p class="lead"><strong>Please read:</strong></p>
-          <p class="lead">Hi there! Feel free to drive around our lab. This is a prototype so the robot may be unstable. If someone else is driving, please wait until they're done. Enjoy the ride!</p>
-<!--           <br />
-          <a class="btn btn-lg btn-warning" ng-click="joinQueue()">Join queue!</a> -->
+          <p class="lead"><strong>Hello!</strong></p>
+          <p class="lead">Feel free to drive around our lab. This is a prototype so the robot may be unstable. If there's a lineup to use the robot, your turn will end in 60 seconds.</p>
+          <!-- <p class="lead"><strong>The Thumper is currently charging, check back at 6:00 PM PST. Thanks!</strong></p> -->
+          <p class="lead"><strong>Thumper is undergoing repairs. We are trying to get it working ASAP!</strong></p>
+          <br />
+          <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+              <p class="lead"><strong id="queuelength" ng-bind="queuelength">Queue Length: N/A</strong></p>
+            </div>
+            <div class="col-md-4">
+              <p class="lead"><strong id="currentposition" ng-bind="currentposition">Your Position: N/A</strong></p>
+            </div>
+          </div>
+          <a class="btn btn-lg btn-warning" ng-click="joinQueue()">Join queue!</a>
         </div>
       </div>
     </div>

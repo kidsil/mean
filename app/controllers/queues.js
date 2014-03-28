@@ -14,8 +14,13 @@ exports.create = function(req, res) {
         session_id: req.session.id
     })
     .exec(function(err, queue) {
-        if (err) return;
-        if (!queue) {
+        // if (err) return;
+        // There is a problem with saving new queues for some reason
+
+        if (queue) {
+            return;
+        }
+        else if (!queue) {
             queue = new Queue();
             queue.session_id = req.session.id;
 
@@ -32,8 +37,5 @@ exports.create = function(req, res) {
 
             return;
         }
-
-        queue.save();
-        res.jsonp(queue);
     });
 };

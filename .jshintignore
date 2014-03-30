@@ -1,1 +1,3 @@
 test/coverage/**
+server/config/system/bootstrap.js
+server/config/express.js

@@ -18,10 +18,6 @@ var express = require('express'),
  * Please note that the order of loading is important.
  */
 
-// Load configurations
-// Set the node environment variable if not set before
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 // Initializing system variables
 var config = require('./server/config/config');
 var db = mongoose.connect(config.db);
@@ -30,10 +26,9 @@ var db = mongoose.connect(config.db);
 var app = require('./server/config/system/bootstrap')(passport, db);
 
 // Start the app by listening on <port>
-var port = process.env.PORT || config.port;
 //app.listen(port);
-var io = require('socket.io').listen(app.listen(port));
-console.log('Express app started on port ' + port);
+var io = require('socket.io').listen(app.listen(config.port));
+console.log('Express app started on port ' + config.port);
 
 var parseCookie = express.cookieParser('MEAN');
 

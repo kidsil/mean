@@ -5,16 +5,16 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
         $scope.global = Global;
 
         // $scope.menus = {
-        //         main: [{
-        //             'role': 'authenticated',
-        //             'title': 'Articles',
-        //             'link': 'all articles'
-        //         }, {
-        //             'role': 'authenticated',
-        //             'title': 'Create New Article',
-        //             'link': 'create article'
-        //         }]
-        //     }
+        //     main: [{
+        //         'roles': ['authenticated'],
+        //         'title': 'Articles',
+        //         'link': 'all articles'
+        //     }, {
+        //         'roles': ['authenticated'],
+        //         'title': 'Create New Article',
+        //         'link': 'create article'
+        //     }]
+        // }
 
         $scope.menu = [{
             'title': 'Home',

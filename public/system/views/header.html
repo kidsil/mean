@@ -12,12 +12,12 @@
 
         <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li data-ng-repeat="item in menu" ui-sref-active="active">
+                <!-- <li data-ng-repeat="item in menu" ui-sref-active="active">
                     <a ui-sref="{{item.state}}">{{item.title}}</a>
-                </li>
-               <!--  <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-                    <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
                 </li> -->
+                <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ui-sref-active="active">
+                    <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
+                </li>
             </ul>
         </div>
     </div>

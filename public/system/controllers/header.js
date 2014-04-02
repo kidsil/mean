@@ -5,30 +5,31 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
         $scope.global = Global;
         $scope.menus = {};
 
-        $scope.menu = [{
+        // $scope.menu = [{
+        var defaultMainMenu = [{
+            'roles': ['annonymous'],
             'title': 'Home',
-            'state': 'home',
-            'link': ''
+            'link': 'home'
         }, {
+            'roles': ['annonymous'],
             'title': 'Control the Lynx',
-            'state': 'lynx',
             'link': 'lynx'
         }, {
+            'roles': ['annonymous'],
             'title': 'Control the Thumper',
-            'state': 'thumper',
             'link': 'thumper'
         }];
 
         // Default hard coded menu items for main menu
-        var defaultMainMenu = [{
-            'roles': ['authenticated'],
-            'title': 'Articles',
-            'link': 'all articles'
-        }, {
-            'roles': ['authenticated'],
-            'title': 'Create New Article',
-            'link': 'create article'
-        }];
+        // var defaultMainMenu = [{
+        //     'roles': ['authenticated'],
+        //     'title': 'Articles',
+        //     'link': 'all articles'
+        // }, {
+        //     'roles': ['authenticated'],
+        //     'title': 'Create New Article',
+        //     'link': 'create article'
+        // }];
 
         // Query menus added by modules. Only returns menus that user is allowed to see.
         function queryMenu(name, defaultMenu) {

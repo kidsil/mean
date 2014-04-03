@@ -85,19 +85,21 @@ function speedUpUp() {
 }
 
 function cameraDown() {
-    if (allowPan == false)
-    {
-        allowPan = true;
-    }
-    else
-    {
-        allowPan = false;
-    }
+    // if (allowPan == false)
+    // {
+    //     allowPan = true;
+    // }
+    // else
+    // {
+    //     allowPan = false;
+    // }
 
+    allowPan = true;
     console.log('camera');
 }
 
 function cameraUp() {
+    allowPan = false;
     console.log('-camera');
 }
 
@@ -397,18 +399,40 @@ $(document).mousemove(function(e) {
         xPosition = Math.round(e.clientX / $(window).width() * 180);
         yPosition = 180 - Math.round(e.clientY / $(window).height() * 180);
 
-        if (xPosition % 5 == 0 && xPreviousPosition != xPosition)
-        {
+        // if (xPosition % 5 == 0 && xPreviousPosition != xPosition)
+        // {
+        //     xPreviousPosition = xPosition;
+        //     console.log('X: ' + xPosition);
+        //     socket.emit('clientToLynx', 'pan' + xPosition);
+        // }
+
+        // if(yPosition % 5 == 0 && yPreviousPosition != yPosition)
+        // {
+        //     yPreviousPosition = yPosition;
+        //     console.log('Y: ' + yPosition);
+        //     socket.emit('clientToLynx', 'tilt' + yPosition);
+        // }
+
+        if ((xPreviousPosition - xPosition) >= 1) {
             xPreviousPosition = xPosition;
             console.log('X: ' + xPosition);
-            socket.emit('clientToLynx', 'pan' + xPosition);
+            socket.emit('clientToLynx', 'pan1');
+        }
+        else if ((xPreviousPosition - xPosition) <= -1) {
+            xPreviousPosition = xPosition;
+            console.log('X: ' + xPosition);
+            socket.emit('clientToLynx', 'pan0');
         }
 
-        if(yPosition % 5 == 0 && yPreviousPosition != yPosition)
-        {
+        if((yPreviousPosition - yPosition) >= 1) {
             yPreviousPosition = yPosition;
             console.log('Y: ' + yPosition);
-            socket.emit('clientToLynx', 'tilt' + yPosition);
+            socket.emit('clientToLynx', 'tilt1');
+        }
+        else if((yPreviousPosition - yPosition) <= -1) {
+            yPreviousPosition = yPosition;
+            console.log('Y: ' + yPosition);
+            socket.emit('clientToLynx', 'tilt0');
         }
 
     }

@@ -120,9 +120,9 @@ module.exports = function(app, passport, db) {
 
         mean.events.on('modulesFound', function() {
 
-            mean.modules.forEach(function(module) {
-                app.use('/' + module.name, express.static(config.root + '/node_modules/' + module.name + '/public'));
-            });
+            for (var name in mean.modules) {
+                app.use('/' + name, express.static(config.root + '/node_modules/' + name + '/public'));
+            }
 
             bootstrapRoutes();
 

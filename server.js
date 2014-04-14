@@ -1,9 +1,4 @@
 'use strict';
-/**
- *  Mean container for dependency injection
- */
-var mean = require('meanio');
-mean.app('Mean Demo App',{});
 
 /**
  * Module dependencies.
@@ -26,9 +21,9 @@ var db = mongoose.connect(config.db);
 var app = require('./server/config/system/bootstrap')(passport, db);
 
 // Start the app by listening on <port>
-//app.listen(port);
+// app.listen(config.port);
 var io = require('socket.io').listen(app.listen(config.port));
-console.log('Express app started on port ' + config.port);
+console.log('Mean app started on port ' + config.port + ' (' + process.env.NODE_ENV + ')');
 
 var parseCookie = express.cookieParser('MEAN');
 

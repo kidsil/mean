@@ -1,8 +1,8 @@
 'use strict';
 
 //Setting up route
-angular.module('mean.articles').config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+angular.module('mean.articles').config(['$stateProvider',
+    function($stateProvider) {
         // states for my app
         $stateProvider
             .state('lynx', {
@@ -12,6 +12,6 @@ angular.module('mean.articles').config(['$stateProvider', '$urlRouterProvider',
             .state('thumper', {
                 url: '/thumper',
                 templateUrl: 'public/robots/views/thumper.html'
-            })
+            });
     }
-])
+]);

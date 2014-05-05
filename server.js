@@ -3,10 +3,10 @@
 /**
  * Module dependencies.
  */
-var express = require('express'),
-    mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
     passport = require('passport'),
-    logger = require('mean-logger');
+    logger = require('mean-logger'),
+    cookieParser = require('cookie-parser');
 
 /**
  * Main application entry file.
@@ -25,7 +25,7 @@ var app = require('./server/config/system/bootstrap')(passport, db);
 var io = require('socket.io').listen(app.listen(config.port, config.hostname));
 console.log('Mean app started on port ' + config.port + ' (' + process.env.NODE_ENV + ')');
 
-var parseCookie = express.cookieParser('MEAN');
+var parseCookie = cookieParser('MEAN');
 
 io.configure(function() {
     io.set('authorization', function(handshake, callback) {

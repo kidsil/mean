@@ -7,15 +7,15 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
 
         // $scope.menu = [{
         var defaultMainMenu = [{
-            'roles': ['annonymous'],
+            'roles': ['anonymous'],
             'title': 'Home',
             'link': 'home'
         }, {
-            'roles': ['annonymous'],
+            'roles': ['anonymous'],
             'title': 'Control the Lynx',
             'link': 'lynx'
         }, {
-            'roles': ['annonymous'],
+            'roles': ['anonymous'],
             'title': 'Control the Thumper',
             'link': 'thumper'
         }];

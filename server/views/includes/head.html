@@ -19,17 +19,20 @@
     <meta property="og:image" content="APP_LOGO">
     <meta property="og:site_name" content="MEAN - A Modern Stack">
     <meta property="fb:admins" content="APP_ADMIN">
+    
 
     {% for file in assets.css %}
         <link rel="stylesheet" href="{{file}}">
-    {% endfor %}
+    {% endfor %} 
+
+    <link rel="stylesheet" href="/public/system/lib/bootstrap/dist/css/bootstrap.css">
 
     <link rel="stylesheet" href="public/system/lib/components-font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic">
     <link rel="stylesheet" href="/modules/aggregated.css">
 
-<!--[if lt IE 9]>
+    <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 </head>

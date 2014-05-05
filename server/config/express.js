@@ -21,9 +21,14 @@ var express = require('express'),
     expressValidator = require('express-validator'),
     appPath = process.cwd(),
     util = require('./util'),
-    assetmanager = require('assetmanager');
+    assetmanager = require('assetmanager'),
+    fs = require('fs'),
+    Grid = require('gridfs-stream');
 
 module.exports = function(app, passport, db) {
+
+    var gfs = new Grid(db.connections[0].db, db.mongo);
+
     app.set('showStackError', true);
 
     // Prettify HTML
@@ -105,17 +110,49 @@ module.exports = function(app, passport, db) {
 
     // Setting the fav icon and static folder
     app.use(favicon());
-    app.use('/public', express.static(config.root + '/public'));
 
     app.get('/modules/aggregated.js', function(req, res) {
         res.setHeader('content-type', 'text/javascript');
         res.send(mean.aggregated.js);
     });
 
+    function themeHandler(req, res) {
+
+        res.setHeader('content-type', 'text/css');
+
+        gfs.files.findOne({
+            filename: 'theme.css'
+        }, function(err, file) {
+
+            if (!file) {
+                fs.createReadStream(process.cwd() + '/public/system/lib/bootstrap/dist/css/bootstrap.css').pipe(res);
+            } else {
+                // streaming to gridfs
+                var readstream = gfs.createReadStream({
+                    filename: 'theme.css'
+                });
+
+                //error handling, e.g. file does not exist
+                readstream.on('error', function(err) {
+                    console.log('An error occurred!', err.message);
+                    throw err;
+                });
+
+                readstream.pipe(res);
+            }
+        });
+    }
+
+    // We override this file to allow us to swap themes
+    // We keep the same public path so we can make use of the bootstrap assets
+    app.get('/public/system/lib/bootstrap/dist/css/bootstrap.css', themeHandler);
+
     app.get('/modules/aggregated.css', function(req, res) {
         res.setHeader('content-type', 'text/css');
         res.send(mean.aggregated.css);
     });
+
+    app.use('/public', express.static(config.root + '/public'));
 
     mean.events.on('modulesFound', function() {
 
